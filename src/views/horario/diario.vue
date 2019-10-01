@@ -1,0 +1,178 @@
+<template>
+  <div>
+    <div class="alert alert-warning" role="alert">CREACION DE HORARIOS</div>
+    <div class="alert alert-dark" role="alert">OPERARIO {{ operario.nombre }} - {{ operario.dni}}</div>
+    <b-form @reset="onReset" v-on:submit.prevent="onSubmit">
+      <b-form-group
+        id="input-group-1"
+        label="Fecha desde"
+        label-for="fecha_1"
+        description="We'll never share your email with anyone else."
+      >
+        <b-form-input id="fecha_1" v-model="horario.fecha_1" type="date" @change="cargaHora"></b-form-input>
+      </b-form-group>
+      <b-form-group
+        id="input-group-2"
+        label="Fecha hasta"
+        label-for="fecha_2"
+        description="We'll never share your email with anyone else."
+      >
+        <b-form-input id="fecha_2" v-model="horario.fecha_2" type="date"></b-form-input>
+      </b-form-group>
+      <b-form-group
+        id="input-group-3"
+        label="Hora inicio"
+        label-for="hora_inicio"
+        description="We'll never share your email with anyone else."
+      >
+        <b-form-input id="hora_inicio" v-model="horario.hora_inicio" type="text"></b-form-input>
+      </b-form-group>
+      <b-form-group
+        id="input-group-4"
+        label="Hora fin"
+        label-for="hora_fin"
+        description="We'll never share your email with anyone else."
+      >
+        <b-form-input id="hora_fin" v-model="horario.hora_fin" type="text"></b-form-input>
+      </b-form-group>
+
+      <div>
+        <b-button-group>
+          <b-button @click="cargaAutomatica(1)">de 6 a 9</b-button>
+          <b-button @click="cargaAutomatica(2)">de 19 a 21</b-button>
+          <b-button @click="cargaAutomatica(3)">de 10 a 13</b-button>
+          <b-button @click="cargaAutomatica(4)">de 15 a 18</b-button>
+        </b-button-group>
+      </div>
+      <b-form-group
+        id="input-group-5"
+        label="Dias trabajados a la semana"
+        label-for="dias"
+        description="We'll never share your email with anyone else."
+      >
+        <b-form-input id="dias" v-model="horario.dias_trabajo" type="number"></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-6"
+        label="Turno"
+        label-for="turno"
+        description="We'll never share your email with anyone else."
+      >
+        <b-form-input id="turno" v-model="horario.turno" type="number"></b-form-input>
+        <div>
+          <div class="alert alert-success" role="alert" v-if="show_c">Horarios creados</div>
+        </div>
+
+        <div>
+          <div class="alert alert-danger" role="alert" v-if="show">Horarios eliminados</div>
+        </div>
+      </b-form-group>
+      <b-button type="submit" variant="primary">Aceptar</b-button>
+      <b-button type="reset" variant="success">Reset</b-button>
+      <b-button type="button" variant="danger" @click="borrar">BORRAR</b-button>
+    </b-form>
+  </div>
+</template>
+
+<script>
+import { mapActions, mapState, mapMutations, mapGetters } from 'vuex';
+export default {
+  name: 'diario',
+  data() {
+    return {
+      horario: {
+        fecha_1: null,
+        fecha_2: null,
+        operario_id: null,
+        seccion_id: null,
+        cotizacion_id: null,
+        hora_inicio: null,
+        hora_fin: null,
+        turno: 1,
+        dias_trabajo: 32,
+        horas_trabajadas: null,
+        horas_max: null
+      },
+      show: false,
+      show_c: false,
+      idOperario: null
+    };
+  },
+  mounted() {
+    this.horario.fecha_1 = this.lasFechas.fechaUno;
+    this.horario.fecha_2 = this.lasFechas.fechaDia;
+  },
+  computed: {
+    ...mapState('horarioStore', ['operarios', 'operario']),
+    ...mapGetters('horarioStore', ['lasFechas'])
+  },
+  methods: {
+    ...mapActions('horarioStore', [
+      'getHorariosFecha',
+      'setCreacion',
+      'deleteHorariosFechaOperario',
+      'postCreacion'
+    ]),
+    editar() {
+      this.horario.operario_id = this.operario._id;
+      this.horario.seccion_id = this.operario.seccion_id;
+      this.horario.cotizacion_id = this.operario.cotizacion_id;
+    },
+    cargaAutomatica(turno) {
+      switch (turno) {
+        case 1:
+          this.horario.hora_inicio = this.horario.fecha_1 + ' 06:00';
+          this.horario.hora_fin = this.horario.fecha_1 + ' 09:00';
+          break;
+        case 2:
+          this.horario.hora_inicio = this.horario.fecha_1 + ' 19:00';
+          this.horario.hora_fin = this.horario.fecha_1 + ' 21:00';
+          break;
+        case 3:
+          this.horario.hora_inicio = this.horario.fecha_1 + ' 10:00';
+          this.horario.hora_fin = this.horario.fecha_1 + ' 13:00';
+          break;
+        case 4:
+          this.horario.hora_inicio = this.horario.fecha_1 + ' 14:00';
+          this.horario.hora_fin = this.horario.fecha_1 + ' 18:00';
+          break;
+      }
+    },
+    dateParser(date) {
+      return new Date.parse(date);
+    },
+    onSubmit() {
+      this.horario.operario_id = this.operario._id;
+      this.horario.seccion_id = this.operario.seccion_id;
+      this.horario.cotizacion_id = this.operario.cotizacion_id;
+      this.horario.horas_max = this.operario.max;
+      this.setCreacion(this.horario).then(() => {
+        this.postCreacion();
+        this.show_c = true;
+      });
+    },
+    borrar() {
+      this.deleteHorariosFechaOperario({
+        fecha_1: this.horario.fecha_1,
+        fecha_2: this.horario.fecha_2,
+        id: this.operario._id
+      }).then(data => {
+        if (data) {
+          this.show = true;
+        }
+      });
+    },
+    onReset() {},
+    cargaHora() {
+      this.horario.hora_inicio =
+        this.horario.fecha_1 + ' ' + this.operario.hora_inicio;
+      this.horario.hora_fin =
+        this.horario.fecha_1 + ' ' + this.operario.hora_fin;
+    }
+  }
+};
+</script>
+
+<style scoped>
+</style>
