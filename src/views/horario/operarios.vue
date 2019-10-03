@@ -25,11 +25,8 @@ export default {
   data() {
     return {
       fields: [
-        // A virtual column that doesn't exist in items
         { key: 'index', label: '#' },
-        // A column that needs custom formatting
         { key: 'nombre', label: 'Nombre' },
-        // A regular column
         { key: 'accion', label: 'Accion' }
       ]
     };
@@ -62,6 +59,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>

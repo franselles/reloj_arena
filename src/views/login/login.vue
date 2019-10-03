@@ -18,7 +18,7 @@
                   v-model="pin"
                 />
                 <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Sign in</button>
-                <a href="#" class="float-right">0.0.1</a>
+                <a href="#" class="float-right">0.1.4</a>
               </form>
             </div>
           </div>
@@ -53,6 +53,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>

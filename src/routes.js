@@ -38,6 +38,18 @@ export default [
         name: 'operario',
         component: () => import('./views/horario/operario.vue'),
         meta: { requiresAuth: true }
+      },
+      {
+        path: 'control',
+        name: 'control',
+        component: () => import('./views/horario/control.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'detalle',
+        name: 'detalle',
+        component: () => import('./views/horario/detalle.vue'),
+        meta: { requiresAuth: true }
       }
     ]
   }

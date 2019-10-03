@@ -8,7 +8,8 @@ export default {
     operarios: [],
     secciones: [],
     cotizaciones: [],
-    horarios: []
+    horarios: [],
+    horarioDia: null
   },
   mutations: {
     setOperarios(state, payload) {
@@ -35,6 +36,9 @@ export default {
     },
     nuevoOperario(state) {
       state.operario = null;
+    },
+    setHorarioDia(state, payload) {
+      state.horarioDia = payload;
     }
   },
   actions: {
@@ -350,87 +354,91 @@ export default {
       } finally {
         console.log('La petición para borrar el operario ha finalizado');
       }
-    }
-    /*
-    async addParte({ dispatch, state }, payload) {
+    },
+    async getHorariosTotalFecha({}, payload) {
+      const fecha_1 = payload.fecha_1;
+      const fecha_2 = payload.fecha_2;
       try {
-        await Vue.axios({
-          method: 'post',
-          url: '/partes',
-          data: {
-            mecanico: payload.mecanico,
-            fecha: payload.fecha,
-            matricula: payload.matricula,
-            vehiculo: payload.vehiculo,
-            motivo: payload.motivo,
-            km: payload.km,
-            averia: payload.averia,
-            reparacion: payload.reparacion,
-            observaciones: payload.observaciones,
-            fecha_f: payload.fecha_f,
-            reparado: payload.reparado,
-            cerrado: payload.cerrado
-          }
+        const { data } = await Vue.axios({
+          method: 'get',
+          url: `/horarios/control/todos/fecha/${fecha_1}/${fecha_2}`
         });
-        dispatch('getPartesFiltro', state.filtroPartes);
+        return data;
       } catch (e) {
-        console.log(e.message);
+        console.log('todosError', e.message);
         console.log(e.response.data);
         console.log(e.response.status);
         console.log(e.response.headers);
       } finally {
-        console.log('La petición para crear un parte ha finalizado');
+        console.log('La petición para obtener los horarios ha finalizado');
       }
     },
-    async updateParte({ dispatch, state }, payload) {
+    async getHorarioDetalle({ commit }, payload) {
+      const id = payload;
       try {
-        await Vue.axios({
-          method: 'PUT',
-          url: `/partes/${payload._id}`,
-          data: {
-            mecanico: payload.mecanico,
-            fecha: payload.fecha,
-            matricula: payload.matricula,
-            vehiculo: payload.vehiculo,
-            motivo: payload.motivo,
-            km: payload.km,
-            averia: payload.averia,
-            reparacion: payload.reparacion,
-            observaciones: payload.observaciones,
-            fecha_f: payload.fecha_f,
-            reparado: payload.reparado,
-            cerrado: payload.cerrado
-          }
+        const { data } = await Vue.axios({
+          method: 'get',
+          url: `/horarios/control/${id}`
         });
-        dispatch('getPartesFiltro', state.filtroPartes);
+        commit('setHorarioDia', data);
       } catch (e) {
-        console.log(e.message);
+        console.log('todosError', e.message);
         console.log(e.response.data);
         console.log(e.response.status);
         console.log(e.response.headers);
       } finally {
-        console.log('La petición para actualizar un parte ha finalizado');
+        console.log('La petición para obtener el horario ha finalizado');
       }
     },
-    async removeParte({ dispatch }, payload) {
+    async updateHora({}, payload) {
+      try {
+        await Vue.axios({
+          method: 'put',
+          url: `/horarios/control/${payload._id}`,
+          data: {
+            fecha: payload.fecha,
+            operario_id: payload.operario_id,
+            seccion_id: payload.seccion_id,
+            cotizacion_id: payload.cotizacion_id,
+            nombre: payload.nombre,
+            dni: payload.dni,
+            turno: payload.turno,
+            hora_inicio: payload.hora_inicio,
+            hora_fin: payload.hora_fin,
+            hi: payload.hi,
+            hf: payload.hf,
+            horas_trabajadas: payload.horas_trabajadas,
+            horas_max: payload.horas_max,
+            terminado: payload.terminado,
+            observacion: payload.observacion
+          }
+        });
+      } catch (e) {
+        console.log('todosError', e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para actualizar el horario ha finalizado');
+      }
+    },
+    async deleteHora({}, payload) {
+      const id = payload._id;
+
       try {
         await Vue.axios({
           method: 'delete',
-          url: `/partes/${payload._id}`
+          url: `/horarios/control/${id}`
         });
-        dispatch('getPartes');
-      } catch (e) {
-        console.log(e.message);
+      } catch (error) {
+        console.log('todosError', e.message);
         console.log(e.response.data);
         console.log(e.response.status);
         console.log(e.response.headers);
       } finally {
-        console.log(
-          'La petición para actualizar el estado de parte ha finalizado'
-        );
+        console.log('La petición para eliminar el horario ha finalizado');
       }
     }
-    */
   },
   getters: {
     lasFechas: () => {

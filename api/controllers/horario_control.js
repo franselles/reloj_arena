@@ -130,7 +130,6 @@ function getHorarioControlFecha(req, res) {
         return res.status(404).send({
           message: 'No existe'
         });
-
       res.status(200).send(docs);
     });
 }

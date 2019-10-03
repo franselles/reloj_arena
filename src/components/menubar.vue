@@ -11,6 +11,10 @@
         </b-navbar-nav>
 
         <b-navbar-nav>
+          <b-nav-item :to="{name: 'control'}">Control dia</b-nav-item>
+        </b-navbar-nav>
+
+        <b-navbar-nav>
           <b-nav-item-dropdown text="Otros">
             <b-dropdown-item href="#">AAA</b-dropdown-item>
             <b-dropdown-item href="#">BBB</b-dropdown-item>
@@ -26,7 +30,6 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <router-view />
   </div>
 </template>
 
@@ -46,6 +49,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>

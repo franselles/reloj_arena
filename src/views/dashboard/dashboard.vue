@@ -1,6 +1,11 @@
 <template>
   <div>
-    <menubar />
+    <div>
+      <menubar />
+    </div>
+    <div class="principal">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -13,6 +18,8 @@ export default {
   }
 };
 </script>
-
-<style scoped>
+  <style scoped>
+.principal {
+  margin-top: 60px;
+}
 </style>
