@@ -9,7 +9,7 @@
         id="fecha"
         label="Fecha:"
         label-for="fecha"
-        description="We'll never share your email with anyone else."
+        description="Fecha dia de trabajo del correspondiente turno."
       >
         <b-form-input id="fecha" type="date" v-model="dia.fecha"></b-form-input>
       </b-form-group>
@@ -18,7 +18,7 @@
         id="turno"
         label="Turno:"
         label-for="turno"
-        description="We'll never share your email with anyone else."
+        description="Turno de trabajo de la jornada."
       >
         <b-form-input id="turno" type="number" v-model="dia.turno"></b-form-input>
       </b-form-group>
@@ -27,7 +27,7 @@
         id="hora_inicio"
         label="Hora inicio:"
         label-for="hora_inicio"
-        description="We'll never share your email with anyone else."
+        description="FECHA HORA de INICIO de turno."
       >
         <b-form-input id="hora_inicio" type="text" v-model="dia.hora_inicio"></b-form-input>
       </b-form-group>
@@ -36,7 +36,7 @@
         id="hora_fin"
         label="Hora fin:"
         label-for="hora_fin"
-        description="We'll never share your email with anyone else."
+        description="FECHA HORA de FINAL de turno."
       >
         <b-form-input id="hora_fin" type="text" v-model="dia.hora_fin"></b-form-input>
       </b-form-group>
@@ -49,7 +49,7 @@
         id="horas_trabajadas"
         label="Horas trabajadas:"
         label-for="horas_trabajadas"
-        description="We'll never share your email with anyone else."
+        description="Horas trabajadas en el correspondiente turno."
       >
         <b-form-input id="horas_trabajadas" type="text" v-model="dia.horas_trabajadas"></b-form-input>
       </b-form-group>

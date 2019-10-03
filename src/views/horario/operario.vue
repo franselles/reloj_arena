@@ -13,7 +13,7 @@
         id="nombre"
         label="Nombre:"
         label-for="nombre"
-        description="We'll never share your email with anyone else."
+        description="Nombre del operario en MAYUSCULAS."
       >
         <b-form-input
           id="nombre"
@@ -33,7 +33,12 @@
         v-model="localOperario.activo"
       >Esta activo</b-form-checkbox>
 
-      <b-form-group id="dni" label="DNI/NIE" label-for="dni">
+      <b-form-group
+        id="dni"
+        label="DNI/NIE"
+        label-for="dni"
+        description="DNI/NIE del operario en MAYUSCULAS."
+      >
         <b-form-input
           id="dni"
           required
@@ -51,11 +56,21 @@
         v-model="localOperario.legal"
       >Aviso legal</b-form-checkbox>
 
-      <b-form-group id="pass" label="Password" label-for="pass">
+      <b-form-group
+        id="pass"
+        label="Password"
+        label-for="pass"
+        description="Contraseña del operario en MAYUSCULAS."
+      >
         <b-form-input id="pass" placeholder="Password" v-model="localOperario.pass"></b-form-input>
       </b-form-group>
 
-      <b-form-group id="seccion" label="Seccion" label-for="seccion">
+      <b-form-group
+        id="seccion"
+        label="Seccion"
+        label-for="seccion"
+        description="Seccion donde trabaja el operario."
+      >
         <b-form-select
           id="seccion"
           required
@@ -65,7 +80,12 @@
           <option v-for="item in secciones" :key="item._id" :value="item._id">{{item.seccion}}</option>
         </b-form-select>
       </b-form-group>
-      <b-form-group id="cotizacion" label="Cotizacion" label-for="cotizacion">
+      <b-form-group
+        id="cotizacion"
+        label="Cotizacion"
+        label-for="cotizacion"
+        description="Grupo de cotización del operario."
+      >
         <b-form-select id="cotizacion" required v-model="localOperario.cotizacion_id">
           <option v-for="item in cotizaciones" :key="item._id" :value="item._id">{{item.cotizacion}}</option>
         </b-form-select>
@@ -75,7 +95,7 @@
         id="hora_inicio"
         label="Hora inicio:"
         label-for="hora_inicio"
-        description="We'll never share your email with anyone else."
+        description="Hora aproximada de inicio de turno."
       >
         <b-form-input id="hora_inicio" type="time" v-model="localOperario.hora_inicio"></b-form-input>
       </b-form-group>
@@ -83,7 +103,7 @@
         id="hora_fin"
         label="Hora fin:"
         label-for="hora_fin"
-        description="We'll never share your email with anyone else."
+        description="Hora aproximada de final de turno."
       >
         <b-form-input id="hora_fin" type="time" v-model="localOperario.hora_fin"></b-form-input>
       </b-form-group>
@@ -92,7 +112,7 @@
         id="max"
         label="Maximo minutos de trabajo"
         label-for="max"
-        description="We'll never share your email with anyone else."
+        description="Cantidad máxima en MINUTOS del turno."
       >
         <b-form-input id="max" type="number" v-model="localOperario.max"></b-form-input>
       </b-form-group>

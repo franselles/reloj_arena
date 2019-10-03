@@ -7,7 +7,7 @@
         id="input-group-1"
         label="Fecha desde"
         label-for="fecha_1"
-        description="We'll never share your email with anyone else."
+        description="Fecha INICIAL para la creación de horas."
       >
         <b-form-input id="fecha_1" v-model="horario.fecha_1" type="date" @change="cargaHora"></b-form-input>
       </b-form-group>
@@ -15,7 +15,7 @@
         id="input-group-2"
         label="Fecha hasta"
         label-for="fecha_2"
-        description="We'll never share your email with anyone else."
+        description="Fecha FINAL para la creación de horas."
       >
         <b-form-input id="fecha_2" v-model="horario.fecha_2" type="date"></b-form-input>
       </b-form-group>
@@ -23,7 +23,7 @@
         id="input-group-3"
         label="Hora inicio"
         label-for="hora_inicio"
-        description="We'll never share your email with anyone else."
+        description="FECHA HORA de INICIO de turno."
       >
         <b-form-input id="hora_inicio" v-model="horario.hora_inicio" type="text"></b-form-input>
       </b-form-group>
@@ -31,7 +31,7 @@
         id="input-group-4"
         label="Hora fin"
         label-for="hora_fin"
-        description="We'll never share your email with anyone else."
+        description="FECHA HORA de FINAL de turno."
       >
         <b-form-input id="hora_fin" v-model="horario.hora_fin" type="text"></b-form-input>
       </b-form-group>
@@ -48,7 +48,7 @@
         id="input-group-5"
         label="Dias trabajados a la semana"
         label-for="dias"
-        description="We'll never share your email with anyone else."
+        description="Dias de trabajo antes del descanso."
       >
         <b-form-input id="dias" v-model="horario.dias_trabajo" type="number"></b-form-input>
       </b-form-group>
@@ -57,7 +57,7 @@
         id="input-group-6"
         label="Turno"
         label-for="turno"
-        description="We'll never share your email with anyone else."
+        description="Turno de trabajo."
       >
         <b-form-input id="turno" v-model="horario.turno" type="number"></b-form-input>
         <div>

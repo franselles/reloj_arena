@@ -18,7 +18,7 @@
           <small
             id="fecha_1_help"
             class="form-text text-muted"
-          >We'll never share your email with anyone else.</small>
+          >Fecha INICIAL para listar las horas de operarios.</small>
         </div>
         <div class="col">
           <label for="fecha_2">Fecha fin</label>
@@ -33,7 +33,7 @@
           <small
             id="fecha_2_help"
             class="form-text text-muted"
-          >We'll never share your email with anyone else.</small>
+          >Fecha FINAL para listar las horas de operarios.</small>
         </div>
       </div>
     </div>

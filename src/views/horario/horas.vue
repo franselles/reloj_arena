@@ -16,10 +16,7 @@
               v-model="fecha_1"
               @change="filtra()"
             />
-            <small
-              id="fecha_1"
-              class="form-text text-muted"
-            >We'll never share your email with anyone else.</small>
+            <small id="fecha_1" class="form-text text-muted">Fecha INICIAL para listar las horas.</small>
           </div>
         </div>
         <div class="col">
@@ -32,10 +29,7 @@
               v-model="fecha_2"
               @change="filtra()"
             />
-            <small
-              id="fecha_2"
-              class="form-text text-muted"
-            >We'll never share your email with anyone else.</small>
+            <small id="fecha_2" class="form-text text-muted">Fecha FINAL para listar las horas.</small>
           </div>
         </div>
       </div>
@@ -43,6 +37,9 @@
     <b-table :items="horas" :fields="fields" foot-clone>
       <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
       <template v-slot:cell(horas)="row">{{ enHoras(row.item.horas_trabajadas) }}</template>
+      <template v-slot:cell(accion)="row">
+        <button type="button" class="btn btn-success btn-sm" @click="editar(row.item)">EDITAR</button>
+      </template>
       <template v-slot:foot(horas)="row">
         <span class="text-danger">{{ enHoras(total) }}</span>
       </template>
@@ -63,7 +60,8 @@ export default {
         { key: 'hora_inicio', label: 'Inicio' },
         { key: 'hora_fin', label: 'Fin' },
         { key: 'turno', label: 'Turno' },
-        { key: 'horas', label: 'Horas' }
+        { key: 'horas', label: 'Horas' },
+        { key: 'accion', label: 'Acciones' }
       ],
       horas: [],
       total: null
@@ -81,7 +79,9 @@ export default {
   methods: {
     ...mapActions('horarioStore', [
       'getHorariosFechaOperario',
-      'getHorariosTotalFechaOperario'
+      'getHorariosTotalFechaOperario',
+      'getOperario',
+      'getHorarioDetalle'
     ]),
     filtra() {
       this.getHorariosFechaOperario({
@@ -104,6 +104,13 @@ export default {
       const hours = Math.floor(totalMinutes / 60);
       const minutes = totalMinutes % 60;
       return hours + ':' + minutes;
+    },
+    editar(data) {
+      this.getOperario(data.operario_id).then(() => {
+        this.getHorarioDetalle(data._id).then(() => {
+          this.$router.push({ name: 'detalle' });
+        });
+      });
     }
   }
 };
