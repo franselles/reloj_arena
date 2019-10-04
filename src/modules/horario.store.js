@@ -52,6 +52,7 @@ export default {
       let hora_fin;
       let fecha;
       let f1, f2;
+      const dias_trabajo = parseInt(payload.dias_trabajo) + 1;
 
       totalDias = moment(payload.fecha_2).diff(moment(payload.fecha_1), 'days');
 
@@ -80,18 +81,17 @@ export default {
         tempo.terminado = true;
         tempo.observacion = '';
 
-        cuentaDias = n;
+        f1 = moment(hora_inicio, 'YYYY-MM-DD HH:mm').add(1, 'days');
+        f2 = moment(hora_fin, 'YYYY-MM-DD HH:mm').add(1, 'days');
+        let diffInMinutes = f2.diff(f1, 'minutes');
+        tempo.horas_trabajadas = diffInMinutes;
 
-        if (cuentaDias == payload.dias_trabajo) {
+        if (cuentaDias === dias_trabajo) {
           cuentaDias = 0;
 
           fecha = moment(tempo.fecha, 'YYYY-MM-DD')
             .add(1, 'days')
             .format('YYYY-MM-DD');
-          f1 = moment(hora_inicio, 'YYYY-MM-DD HH:mm').add(1, 'days');
-          f2 = moment(hora_fin, 'YYYY-MM-DD HH:mm').add(1, 'days');
-          const diffInMinutes = f2.diff(f1, 'minutes');
-          state.tempo.horas_trabajadas = diffInMinutes;
           hora_inicio = f1.format('YYYY-MM-DD HH:mm');
           hora_fin = f2.format('YYYY-MM-DD HH:mm');
 
@@ -99,15 +99,11 @@ export default {
         }
         commit('pushHorario', tempo);
 
-        cuentaDias++;
+        // cuentaDias++;
 
         fecha = moment(tempo.fecha, 'YYYY-MM-DD')
           .add(1, 'days')
           .format('YYYY-MM-DD');
-        f1 = moment(hora_inicio, 'YYYY-MM-DD HH:mm').add(1, 'days');
-        f2 = moment(hora_fin, 'YYYY-MM-DD HH:mm').add(1, 'days');
-        const diffInMinutes = f2.diff(f1, 'minutes');
-        tempo.horas_trabajadas = diffInMinutes;
         hora_inicio = f1.format('YYYY-MM-DD HH:mm');
         hora_fin = f2.format('YYYY-MM-DD HH:mm');
       }
