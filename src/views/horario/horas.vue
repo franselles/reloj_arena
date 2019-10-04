@@ -39,6 +39,7 @@
       <template v-slot:cell(horas)="row">{{ enHoras(row.item.horas_trabajadas) }}</template>
       <template v-slot:cell(accion)="row">
         <button type="button" class="btn btn-success btn-sm" @click="editar(row.item)">EDITAR</button>
+        <button type="button" class="btn btn-danger btn-sm" @click="borrar(row.item)">BORRAR</button>
       </template>
       <template v-slot:foot(horas)="row">
         <span class="text-danger">{{ enHoras(total) }}</span>
@@ -81,7 +82,8 @@ export default {
       'getHorariosFechaOperario',
       'getHorariosTotalFechaOperario',
       'getOperario',
-      'getHorarioDetalle'
+      'getHorarioDetalle',
+      'deleteHora'
     ]),
     filtra() {
       this.getHorariosFechaOperario({
@@ -110,6 +112,15 @@ export default {
         this.getHorarioDetalle(data._id).then(() => {
           this.$router.push({ name: 'detalle' });
         });
+      });
+    },
+    borrar(data) {
+      this.deleteHora(data).then(() => {
+        for (let i = 0; i < this.horas.length; i++) {
+          if (this.horas[i]._id === data._id) {
+            this.horas.splice(i, 1);
+          }
+        }
       });
     }
   }
