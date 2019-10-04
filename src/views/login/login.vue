@@ -17,8 +17,8 @@
                   required
                   v-model="pin"
                 />
-                <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Sign in</button>
-                <a href="#" class="float-right">0.1.5</a>
+                <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Acceder</button>
+                <a href="#" class="float-right">0.1.6</a>
               </form>
             </div>
           </div>

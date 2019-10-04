@@ -40,6 +40,13 @@
     <div>
       <b-table :items="horas" :fields="fields">
         <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
+        <template v-slot:cell(horas)="row">
+          {{ enHoras(row.item.horas_trabajadas) }}
+          <span
+            class="error_exceso"
+            v-if="exceso(row.item.horas_trabajadas)"
+          >ERROR</span>
+        </template>
         <template v-slot:cell(accion)="row">
           <button type="button" class="btn btn-success btn-sm" @click="editar(row.item)">EDITAR</button>
         </template>
@@ -63,7 +70,7 @@ export default {
         { key: 'turno', label: 'Turno' },
         { key: 'hora_inicio', label: 'Hora inicio' },
         { key: 'hora_fin', label: 'Hora fin' },
-        { key: 'horas_trabajadas', label: 'Horas trabajadas' },
+        { key: 'horas', label: 'Horas trabajadas' },
         { key: 'accion', label: 'Acciones' }
       ]
     };
@@ -93,6 +100,18 @@ export default {
       }).then(data => {
         this.horas = data;
       });
+    },
+    enHoras(totalMinutes) {
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      return hours + ':' + minutes;
+    },
+    exceso(data) {
+      if (data == null || data > 400) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   computed: {
@@ -100,3 +119,9 @@ export default {
   }
 };
 </script>
+ <style scoped>
+.error_exceso {
+  color: red;
+  font-weight: bold;
+}
+</style>

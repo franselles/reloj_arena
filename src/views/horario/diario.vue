@@ -9,7 +9,13 @@
         label-for="fecha_1"
         description="Fecha INICIAL para la creación de horas."
       >
-        <b-form-input id="fecha_1" v-model="horario.fecha_1" type="date" @change="cargaHora"></b-form-input>
+        <b-form-input
+          id="fecha_1"
+          v-model="horario.fecha_1"
+          type="date"
+          @change="cargaHora"
+          required
+        ></b-form-input>
       </b-form-group>
       <b-form-group
         id="input-group-2"
@@ -17,7 +23,7 @@
         label-for="fecha_2"
         description="Fecha FINAL para la creación de horas."
       >
-        <b-form-input id="fecha_2" v-model="horario.fecha_2" type="date"></b-form-input>
+        <b-form-input id="fecha_2" v-model="horario.fecha_2" type="date" required></b-form-input>
       </b-form-group>
       <b-form-group
         id="input-group-3"
@@ -25,7 +31,7 @@
         label-for="hora_inicio"
         description="FECHA HORA de INICIO de turno."
       >
-        <b-form-input id="hora_inicio" v-model="horario.hora_inicio" type="text"></b-form-input>
+        <b-form-input id="hora_inicio" v-model="horario.hora_inicio" type="text" required></b-form-input>
       </b-form-group>
       <b-form-group
         id="input-group-4"
@@ -33,7 +39,7 @@
         label-for="hora_fin"
         description="FECHA HORA de FINAL de turno."
       >
-        <b-form-input id="hora_fin" v-model="horario.hora_fin" type="text"></b-form-input>
+        <b-form-input id="hora_fin" v-model="horario.hora_fin" type="text" required></b-form-input>
       </b-form-group>
 
       <div>
