@@ -32,12 +32,19 @@
             <small id="fecha_2" class="form-text text-muted">Fecha FINAL para listar las horas.</small>
           </div>
         </div>
+        <div class="col">
+          <div class="form-group">
+            <input type="checkbox" class="form-check-input" id="acciones" v-model="ocultar" />
+            <label class="form-check-label" for="acciones">Desactivar</label>
+            <small id="acciones" class="form-text text-muted">Activar / Desactivar botones acciones.</small>
+          </div>
+        </div>
       </div>
     </div>
     <b-table :items="horas" :fields="fields" foot-clone>
       <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
       <template v-slot:cell(horas)="row">{{ enHoras(row.item.horas_trabajadas) }}</template>
-      <template v-slot:cell(accion)="row">
+      <template v-slot:cell(accion)="row" v-if="!ocultar">
         <button type="button" class="btn btn-success btn-sm" @click="editar(row.item)">EDITAR</button>
         <button type="button" class="btn btn-danger btn-sm" @click="borrar(row.item)">BORRAR</button>
       </template>
@@ -54,6 +61,7 @@ export default {
   name: 'horas',
   data() {
     return {
+      ocultar: false,
       fecha_1: null,
       fecha_2: null,
       fields: [
@@ -62,7 +70,7 @@ export default {
         { key: 'hora_fin', label: 'Fin' },
         { key: 'turno', label: 'Turno' },
         { key: 'horas', label: 'Horas' },
-        { key: 'accion', label: 'Acciones' }
+        { key: 'accion', label: '' }
       ],
       horas: [],
       total: null

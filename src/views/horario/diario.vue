@@ -44,9 +44,9 @@
 
       <div>
         <b-button-group>
-          <b-button @click="cargaAutomatica(1)">de 6 a 9</b-button>
-          <b-button @click="cargaAutomatica(2)">de 19 a 21</b-button>
-          <b-button @click="cargaAutomatica(3)">de 10 a 13</b-button>
+          <b-button @click="cargaAutomatica(1)">de 5 a 9</b-button>
+          <b-button @click="cargaAutomatica(2)">de 18 a 20</b-button>
+          <b-button @click="cargaAutomatica(3)">de 10 a 14</b-button>
           <b-button @click="cargaAutomatica(4)">de 15 a 18</b-button>
         </b-button-group>
       </div>
@@ -66,14 +66,13 @@
         description="Turno de trabajo."
       >
         <b-form-input id="turno" v-model="horario.turno" type="number"></b-form-input>
-        <div>
-          <div class="alert alert-success" role="alert" v-if="show_c">Horarios creados</div>
-        </div>
-
-        <div>
-          <div class="alert alert-danger" role="alert" v-if="show">Horarios eliminados</div>
-        </div>
       </b-form-group>
+
+      <b-from-group>
+        <b-alert v-model="show_c" variant="success" dismissible>Horarios creados</b-alert>
+        <b-alert v-model="show" variant="danger" dismissible>Horarios eliminados</b-alert>
+      </b-from-group>
+
       <b-button type="submit" variant="primary">Aceptar</b-button>
       <b-button type="reset" variant="success">Reset</b-button>
       <b-button type="button" variant="danger" @click="borrar">BORRAR</b-button>
@@ -96,7 +95,7 @@ export default {
         hora_inicio: null,
         hora_fin: null,
         turno: 1,
-        dias_trabajo: 32,
+        dias_trabajo: 365,
         horas_trabajadas: null,
         horas_max: null
       },
@@ -128,16 +127,16 @@ export default {
     cargaAutomatica(turno) {
       switch (turno) {
         case 1:
-          this.horario.hora_inicio = this.horario.fecha_1 + ' 06:00';
+          this.horario.hora_inicio = this.horario.fecha_1 + ' 05:00';
           this.horario.hora_fin = this.horario.fecha_1 + ' 09:00';
           break;
         case 2:
-          this.horario.hora_inicio = this.horario.fecha_1 + ' 19:00';
-          this.horario.hora_fin = this.horario.fecha_1 + ' 21:00';
+          this.horario.hora_inicio = this.horario.fecha_1 + ' 18:00';
+          this.horario.hora_fin = this.horario.fecha_1 + ' 20:00';
           break;
         case 3:
           this.horario.hora_inicio = this.horario.fecha_1 + ' 10:00';
-          this.horario.hora_fin = this.horario.fecha_1 + ' 13:00';
+          this.horario.hora_fin = this.horario.fecha_1 + ' 14:00';
           break;
         case 4:
           this.horario.hora_inicio = this.horario.fecha_1 + ' 14:00';
@@ -155,6 +154,7 @@ export default {
       this.horario.horas_max = this.operario.max;
       this.setCreacion(this.horario).then(() => {
         this.postCreacion();
+        this.horario.turno++;
         this.show_c = true;
       });
     },
