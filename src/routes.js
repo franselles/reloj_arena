@@ -50,6 +50,30 @@ export default [
         name: 'detalle',
         component: () => import('./views/horario/detalle.vue'),
         meta: { requiresAuth: true }
+      },
+      {
+        path: 'secciones',
+        name: 'secciones',
+        component: () => import('./views/horario/secciones.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'seccion',
+        name: 'seccion',
+        component: () => import('./views/horario/seccion.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'cotizaciones',
+        name: 'cotizaciones',
+        component: () => import('./views/horario/cotizaciones.vue'),
+        meta: { requiresAuth: true }
+      },
+      {
+        path: 'cotizacion',
+        name: 'cotizacion',
+        component: () => import('./views/horario/cotizacion.vue'),
+        meta: { requiresAuth: true }
       }
     ]
   }

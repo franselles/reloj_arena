@@ -9,7 +9,9 @@ export default {
     secciones: [],
     cotizaciones: [],
     horarios: [],
-    horarioDia: null
+    horarioDia: null,
+    seccion: null,
+    cotizacion: null
   },
   mutations: {
     setOperarios(state, payload) {
@@ -39,6 +41,18 @@ export default {
     },
     setHorarioDia(state, payload) {
       state.horarioDia = payload;
+    },
+    setSeccion(state, payload) {
+      state.seccion = payload;
+    },
+    resetSeccion(state) {
+      state.seccion = null;
+    },
+    setCotizacion(state, payload) {
+      state.cotizacion = payload;
+    },
+    resetCotizacion(state) {
+      state.cotizacion = null;
     }
   },
   actions: {
@@ -433,6 +447,143 @@ export default {
         console.log(e.response.headers);
       } finally {
         console.log('La petición para eliminar el horario ha finalizado');
+      }
+    },
+    async getSecciones({}) {
+      try {
+        const { data } = await Vue.axios({
+          method: 'get',
+          url: '/horarios/secciones'
+        });
+        return data;
+      } catch (e) {
+        console.log('todosError', e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para obtener las secciones ha finalizado');
+      }
+    },
+    async deleteSeccion({}, payload) {
+      const id = payload._id;
+      try {
+        await Vue.axios({
+          method: 'delete',
+          url: `/horarios/seccion/${id}`
+        });
+      } catch (e) {
+        console.log('todosError', e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para borrar el seccion ha finalizado');
+      }
+    },
+    async updateSeccion({}, payload) {
+      try {
+        await Vue.axios({
+          method: 'put',
+          url: `/horarios/seccion/${payload._id}`,
+          data: {
+            seccion: payload.seccion,
+            hora_inicio: payload.hora_inicio,
+            hora_fin: payload.hora_fin,
+            max: payload.max,
+            observacion: payload.observacion
+          }
+        });
+      } catch (e) {
+        console.log('todosError', e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para actualizar el seccion ha finalizado');
+      }
+    },
+    async postSeccion({}, payload) {
+      try {
+        await Vue.axios({
+          method: 'post',
+          url: '/horarios/seccion',
+          data: payload
+        });
+      } catch (e) {
+        console.log(e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para crear seccion ha finalizado');
+      }
+    },
+    async getCotizaciones({}) {
+      try {
+        const { data } = await Vue.axios({
+          method: 'get',
+          url: '/horarios/cotizaciones'
+        });
+        return data;
+      } catch (e) {
+        console.log('todosError', e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para obtener las secciones ha finalizado');
+      }
+    },
+    async deleteCotizacion({}, payload) {
+      const id = payload._id;
+      try {
+        await Vue.axios({
+          method: 'delete',
+          url: `/horarios/cotizacion/${id}`
+        });
+      } catch (e) {
+        console.log('todosError', e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para borrar el cotizacion ha finalizado');
+      }
+    },
+    async updateCotizacion({}, payload) {
+      try {
+        await Vue.axios({
+          method: 'put',
+          url: `/horarios/cotizacion/${payload._id}`,
+          data: {
+            cotizacion: payload.cotizacion,
+            observacion: payload.observacion
+          }
+        });
+      } catch (e) {
+        console.log('todosError', e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para actualizar el cotizacion ha finalizado');
+      }
+    },
+    async postCotizacion({}, payload) {
+      try {
+        await Vue.axios({
+          method: 'post',
+          url: '/horarios/cotizacion',
+          data: payload
+        });
+      } catch (e) {
+        console.log(e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para crear cotizacion ha finalizado');
       }
     }
   },

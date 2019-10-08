@@ -16,10 +16,12 @@
 
         <b-navbar-nav>
           <b-nav-item-dropdown text="Otros">
-            <b-dropdown-item href="#">AAA</b-dropdown-item>
-            <b-dropdown-item href="#">BBB</b-dropdown-item>
-            <b-dropdown-item href="#">CCC</b-dropdown-item>
-            <b-dropdown-item href="#">DDD</b-dropdown-item>
+            <b-dropdown-item>
+              <b-link :to="{name: 'secciones'}">Secciones</b-link>
+            </b-dropdown-item>
+            <b-dropdown-item>
+              <b-link :to="{name: 'cotizaciones'}">Cotizaciones</b-link>
+            </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
         <!-- Right aligned nav items -->

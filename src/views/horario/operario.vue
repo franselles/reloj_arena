@@ -8,7 +8,7 @@
         role="alert"
       >OPERARIO {{ operario.nombre }} - {{ operario.dni}}</div>
     </div>
-    <b-form v-on:submit.prevent="onSubmit" @reset="onReset">
+    <b-form v-on:submit.prevent="onSubmit">
       <b-form-group
         id="nombre"
         label="Nombre:"
@@ -126,7 +126,7 @@
       ></b-form-textarea>
 
       <b-button type="submit" variant="primary">Aceptar</b-button>
-      <b-button type="reset" variant="success">Reset</b-button>
+      <b-button type="button" variant="success" @click="onCancelar()">Cancelar</b-button>
       <b-button type="button" variant="danger" @click="eliminarOperario()">ELIMINAR</b-button>
     </b-form>
   </div>
@@ -186,7 +186,9 @@ export default {
       }
       this.$router.push({ name: 'operarios' });
     },
-    onReset() {},
+    onCancelar() {
+      this.$router.go(-1);
+    },
     verSeccion(value) {
       this.getSeccion(value).then(response => {
         this.localOperario.hora_inicio = response.hora_inicio;
