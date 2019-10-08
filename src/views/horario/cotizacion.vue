@@ -13,7 +13,7 @@
         id="cotizacion"
         label="Seccion:"
         label-for="cotizacion"
-        description="Nombre de la cotizacion en MAYUSCULAS."
+        description="Nombre de la cotizacion."
       >
         <b-form-input
           id="cotizacion"
@@ -21,7 +21,6 @@
           required
           placeholder="Nombre de la cotizacion"
           v-model="localCotizacion.cotizacion"
-          onkeyup="this.value = this.value.toUpperCase();"
         ></b-form-input>
       </b-form-group>
 

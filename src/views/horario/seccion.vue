@@ -13,7 +13,7 @@
         id="seccion"
         label="Seccion:"
         label-for="seccion"
-        description="Nombre de la seccion en MAYUSCULAS."
+        description="Nombre de la seccion."
       >
         <b-form-input
           id="seccion"
@@ -21,7 +21,6 @@
           required
           placeholder="Nombre de la seccion"
           v-model="localSeccion.seccion"
-          onkeyup="this.value = this.value.toUpperCase();"
         ></b-form-input>
       </b-form-group>
 
