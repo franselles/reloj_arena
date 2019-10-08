@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="form-group">
+          <div class="form-group noprint">
             <input type="checkbox" class="form-check-input" id="acciones" v-model="ocultar" />
             <label class="form-check-label" for="acciones">Desactivar</label>
             <small id="acciones" class="form-text text-muted">Activar / Desactivar botones acciones.</small>
@@ -134,3 +134,11 @@ export default {
   }
 };
 </script>
+<style  scoped>
+/* You can add global styles to this file, and also import other style files */
+@media print {
+  .noprint {
+    display: none;
+  }
+}
+</style>

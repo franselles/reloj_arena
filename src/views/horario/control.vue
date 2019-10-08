@@ -107,7 +107,7 @@ export default {
       return hours + ':' + minutes;
     },
     exceso(data) {
-      if (data == null || data > 400) {
+      if (data == null || data > 400 || data == 0) {
         return true;
       } else {
         return false;
