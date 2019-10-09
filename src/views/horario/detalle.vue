@@ -11,7 +11,7 @@
         label-for="fecha"
         description="Fecha dia de trabajo del correspondiente turno."
       >
-        <b-form-input id="fecha" type="date" v-model="dia.fecha"></b-form-input>
+        <b-form-input id="fecha" type="date" v-model="dia.fecha" @change="diaHora"></b-form-input>
       </b-form-group>
 
       <b-form-group
@@ -93,7 +93,7 @@ export default {
         cotizacion_id: null,
         nombre: null,
         dni: null,
-        turno: null,
+        turno: 1,
         hora_inicio: null,
         hora_fin: null,
         hi: null,
@@ -106,17 +106,33 @@ export default {
     };
   },
   mounted() {
-    this.dia = this.horarioDia;
+    if (this.horarioDia != null) {
+      this.dia = this.horarioDia;
+    } else {
+      this.dia.seccion_id = this.operario.seccion_id;
+      this.dia.cotizacion_id = this.operario.cotizacion_id;
+      this.dia.hora_inicio = this.operario.hora_inicio;
+      this.dia.hora_fin = this.operario.hora_fin;
+      this.dia.horas_max = this.operario.max;
+      this.dia.operario_id = this.operario._id;
+      this.dia.dni = this.operario.dni;
+    }
   },
   computed: {
     ...mapState('horarioStore', ['operario', 'horarioDia'])
   },
   methods: {
-    ...mapActions('horarioStore', ['updateHora', 'deleteHora']),
+    ...mapActions('horarioStore', ['updateHora', 'deleteHora', 'postHora']),
     onSubmit() {
-      this.updateHora(this.dia).then(() => {
-        this.$router.go(-1);
-      });
+      if (this.dia._id == null) {
+        this.postHora(this.dia).then(() => {
+          this.$router.go(-1);
+        });
+      } else {
+        this.updateHora(this.dia).then(() => {
+          this.$router.go(-1);
+        });
+      }
     },
     onCancelar() {
       this.$router.go(-1);
@@ -131,6 +147,12 @@ export default {
       const date2 = moment(this.dia.hora_fin, 'YYYY-MM-DD HH:mm');
       const diffInMinutes = date2.diff(date1, 'minutes');
       this.dia.horas_trabajadas = diffInMinutes;
+    },
+    diaHora() {
+      if (this.dia.hora_inicio.length < 6) {
+        this.dia.hora_inicio = this.dia.fecha + ' ' + this.dia.hora_inicio;
+        this.dia.hora_fin = this.dia.fecha + ' ' + this.dia.hora_fin;
+      }
     }
   }
 };

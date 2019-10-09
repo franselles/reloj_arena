@@ -39,6 +39,9 @@ export default {
     nuevoOperario(state) {
       state.operario = null;
     },
+    resetHorarioDia(state) {
+      state.horarioDia = null;
+    },
     setHorarioDia(state, payload) {
       state.horarioDia = payload;
     },
@@ -398,6 +401,22 @@ export default {
         console.log(e.response.headers);
       } finally {
         console.log('La petición para obtener el horario ha finalizado');
+      }
+    },
+    async postHora({}, payload) {
+      try {
+        await Vue.axios({
+          method: 'post',
+          url: '/horarios/control',
+          data: payload
+        });
+      } catch (e) {
+        console.log('todosError', e.message);
+        console.log(e.response.data);
+        console.log(e.response.status);
+        console.log(e.response.headers);
+      } finally {
+        console.log('La petición para ingresar el horario ha finalizado');
       }
     },
     async updateHora({}, payload) {

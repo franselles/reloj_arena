@@ -32,11 +32,16 @@
             <small id="fecha_2" class="form-text text-muted">Fecha FINAL para listar las horas.</small>
           </div>
         </div>
-        <div class="col">
-          <div class="form-group noprint">
+        <div class="col noprint">
+          <div class="form-group">
             <input type="checkbox" class="form-check-input" id="acciones" v-model="ocultar" />
             <label class="form-check-label" for="acciones">Desactivar</label>
             <small id="acciones" class="form-text text-muted">Activar / Desactivar botones acciones.</small>
+          </div>
+        </div>
+        <div class="col noprint">
+          <div>
+            <b-button variant="outline-primary" @click="nuevo">NUEVO</b-button>
           </div>
         </div>
       </div>
@@ -56,7 +61,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'horas',
   data() {
@@ -93,6 +98,7 @@ export default {
       'getHorarioDetalle',
       'deleteHora'
     ]),
+    ...mapMutations('horarioStore', ['resetHorarioDia']),
     filtra() {
       this.getHorariosFechaOperario({
         fecha_1: this.fecha_1,
@@ -130,6 +136,10 @@ export default {
           }
         }
       });
+    },
+    nuevo() {
+      this.resetHorarioDia();
+      this.$router.push({ name: 'detalle' });
     }
   }
 };
