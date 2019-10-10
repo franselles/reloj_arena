@@ -40,7 +40,16 @@
       >
         <b-form-input id="hora_fin" type="text" v-model="dia.hora_fin"></b-form-input>
       </b-form-group>
-
+      <div>
+        <b-button-group>
+          <b-button @click="cargaAutomatica(6)">de 6 a 12</b-button>
+          <b-button @click="cargaAutomatica(1)">de 5 a 9</b-button>
+          <b-button @click="cargaAutomatica(2)">de 18 a 20</b-button>
+          <b-button @click="cargaAutomatica(3)">de 10 a 14</b-button>
+          <b-button @click="cargaAutomatica(4)">de 15 a 18</b-button>
+          <b-button @click="cargaAutomatica(5)">de 20:30 a 02:30(+)</b-button>
+        </b-button-group>
+      </div>
       <b-form-group>
         <b-button type="button" variant="success" @click="calcular()">CALCULAR</b-button>
       </b-form-group>
@@ -152,6 +161,37 @@ export default {
       if (this.dia.hora_inicio.length < 6) {
         this.dia.hora_inicio = this.dia.fecha + ' ' + this.dia.hora_inicio;
         this.dia.hora_fin = this.dia.fecha + ' ' + this.dia.hora_fin;
+      }
+    },
+    cargaAutomatica(turno) {
+      switch (turno) {
+        case 1:
+          this.dia.hora_inicio = this.dia.fecha + ' 05:00';
+          this.dia.hora_fin = this.dia.fecha + ' 09:00';
+          break;
+        case 2:
+          this.dia.hora_inicio = this.dia.fecha + ' 18:00';
+          this.dia.hora_fin = this.dia.fecha + ' 20:00';
+          break;
+        case 3:
+          this.dia.hora_inicio = this.dia.fecha + ' 10:00';
+          this.dia.hora_fin = this.dia.fecha + ' 14:00';
+          break;
+        case 4:
+          this.dia.hora_inicio = this.dia.fecha + ' 14:00';
+          this.dia.hora_fin = this.dia.fecha + ' 18:00';
+          break;
+        case 5:
+          const fecha = moment(this.dia.fecha, 'YYYY-MM-DD')
+            .add(1, 'days')
+            .format('YYYY-MM-DD');
+          this.dia.hora_inicio = this.dia.fecha + ' 20:30';
+          this.dia.hora_fin = fecha + ' 02:30';
+          break;
+        case 6:
+          this.dia.hora_inicio = this.dia.fecha + ' 06:00';
+          this.dia.hora_fin = this.dia.fecha + ' 12:00';
+          break;
       }
     }
   }

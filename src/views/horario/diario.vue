@@ -44,10 +44,12 @@
 
       <div>
         <b-button-group>
+          <b-button @click="cargaAutomatica(6)">de 6 a 12</b-button>
           <b-button @click="cargaAutomatica(1)">de 5 a 9</b-button>
           <b-button @click="cargaAutomatica(2)">de 18 a 20</b-button>
           <b-button @click="cargaAutomatica(3)">de 10 a 14</b-button>
           <b-button @click="cargaAutomatica(4)">de 15 a 18</b-button>
+          <b-button @click="cargaAutomatica(5)">de 20:30 a 02:30(+)</b-button>
         </b-button-group>
       </div>
       <b-form-group
@@ -82,6 +84,7 @@
 
 <script>
 import { mapActions, mapState, mapMutations, mapGetters } from 'vuex';
+import moment from 'moment';
 export default {
   name: 'diario',
   data() {
@@ -141,6 +144,17 @@ export default {
         case 4:
           this.horario.hora_inicio = this.horario.fecha_1 + ' 14:00';
           this.horario.hora_fin = this.horario.fecha_1 + ' 18:00';
+          break;
+        case 5:
+          const fecha = moment(this.horario.fecha_1, 'YYYY-MM-DD')
+            .add(1, 'days')
+            .format('YYYY-MM-DD');
+          this.horario.hora_inicio = this.horario.fecha_1 + ' 20:30';
+          this.horario.hora_fin = fecha + ' 02:30';
+          break;
+        case 6:
+          this.horario.hora_inicio = this.horario.fecha_1 + ' 06:00';
+          this.horario.hora_fin = this.horario.fecha_1 + ' 12:00';
           break;
       }
     },
