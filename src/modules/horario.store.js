@@ -48,11 +48,17 @@ export default {
     setSeccion(state, payload) {
       state.seccion = payload;
     },
+    setSecciones(state, payload) {
+      state.secciones = payload;
+    },
     resetSeccion(state) {
       state.seccion = null;
     },
     setCotizacion(state, payload) {
       state.cotizacion = payload;
+    },
+    setCotizaciones(state, payload) {
+      state.cotizaciones = payload;
     },
     resetCotizacion(state) {
       state.cotizacion = null;
@@ -468,22 +474,6 @@ export default {
         console.log('La petición para eliminar el horario ha finalizado');
       }
     },
-    async getSecciones({}) {
-      try {
-        const { data } = await Vue.axios({
-          method: 'get',
-          url: '/horarios/secciones'
-        });
-        return data;
-      } catch (e) {
-        console.log('todosError', e.message);
-        console.log(e.response.data);
-        console.log(e.response.status);
-        console.log(e.response.headers);
-      } finally {
-        console.log('La petición para obtener las secciones ha finalizado');
-      }
-    },
     async deleteSeccion({}, payload) {
       const id = payload._id;
       try {
@@ -536,22 +526,6 @@ export default {
         console.log(e.response.headers);
       } finally {
         console.log('La petición para crear seccion ha finalizado');
-      }
-    },
-    async getCotizaciones({}) {
-      try {
-        const { data } = await Vue.axios({
-          method: 'get',
-          url: '/horarios/cotizaciones'
-        });
-        return data;
-      } catch (e) {
-        console.log('todosError', e.message);
-        console.log(e.response.data);
-        console.log(e.response.status);
-        console.log(e.response.headers);
-      } finally {
-        console.log('La petición para obtener las secciones ha finalizado');
       }
     },
     async deleteCotizacion({}, payload) {
