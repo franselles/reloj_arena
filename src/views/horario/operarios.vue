@@ -7,7 +7,7 @@
       <b-button variant="outline-primary" @click="nuevo">NUEVO</b-button>
     </div>
     <div>
-      <b-table :items="operarios" :fields="fields">
+      <b-table :items="operarios" :fields="fields" striped hover>
         <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
         <template v-slot:cell(accion)="row">
           <button type="button" class="btn btn-primary btn-sm" @click="crear(row.item)">CREAR</button>

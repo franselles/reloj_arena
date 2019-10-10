@@ -38,7 +38,7 @@
       </div>
     </div>
     <div>
-      <b-table :items="horas" :fields="fields">
+      <b-table :items="horas" :fields="fields" striped hover>
         <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
         <template v-slot:cell(horas)="row">
           {{ enHoras(row.item.horas_trabajadas) }}

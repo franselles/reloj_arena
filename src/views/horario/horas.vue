@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <b-table :items="horas" :fields="fields" foot-clone>
+    <b-table :items="horas" :fields="fields" foot-clone striped hover>
       <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
       <template v-slot:cell(horas)="row">{{ enHoras(row.item.horas_trabajadas) }}</template>
       <template v-slot:cell(accion)="row" v-if="!ocultar">
