@@ -18,12 +18,11 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex';
+import { mapMutations, mapActions, mapState } from 'vuex';
 export default {
   name: 'cotizaciones',
   data() {
     return {
-      cotizaciones: [],
       fields: [
         { key: 'index', label: '#' },
         { key: 'cotizacion', label: 'Nombre' },
@@ -32,9 +31,10 @@ export default {
     };
   },
   mounted() {
-    this.getCotizaciones().then(data => {
-      this.cotizaciones = data;
-    });
+    this.getCotizaciones();
+  },
+  computed: {
+    ...mapState('horarioStore', ['cotizaciones'])
   },
   methods: {
     ...mapMutations('horarioStore', ['setCotizacion', 'resetCotizacion']),

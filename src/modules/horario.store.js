@@ -17,12 +17,6 @@ export default {
     setOperarios(state, payload) {
       state.operarios = payload;
     },
-    setSecciones(state, payload) {
-      state.secciones = payload;
-    },
-    setCotizaciones(state, payload) {
-      state.cotizaciones = payload;
-    },
     setOperario(state, payload) {
       state.operario = payload;
     },
