@@ -2,7 +2,9 @@
   <div>
     <div>
       <div class="alert alert-warning" role="alert">DETALLE HORA</div>
-      <div class="alert alert-dark" role="alert">OPERARIO {{ operario.nombre }} - {{ operario.dni}}</div>
+      <div class="alert alert-dark" role="alert">
+        OPERARIO {{ operario.nombre }} - {{ operario.dni }}
+      </div>
     </div>
     <b-form v-on:submit.prevent="onSubmit">
       <b-form-group
@@ -11,7 +13,12 @@
         label-for="fecha"
         description="Fecha dia de trabajo del correspondiente turno."
       >
-        <b-form-input id="fecha" type="date" v-model="dia.fecha" @change="diaHora"></b-form-input>
+        <b-form-input
+          id="fecha"
+          type="date"
+          v-model="dia.fecha"
+          @change="diaHora"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-group
@@ -20,7 +27,11 @@
         label-for="turno"
         description="Turno de trabajo de la jornada."
       >
-        <b-form-input id="turno" type="number" v-model="dia.turno"></b-form-input>
+        <b-form-input
+          id="turno"
+          type="number"
+          v-model="dia.turno"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-group
@@ -29,7 +40,11 @@
         label-for="hora_inicio"
         description="FECHA HORA de INICIO de turno."
       >
-        <b-form-input id="hora_inicio" type="text" v-model="dia.hora_inicio"></b-form-input>
+        <b-form-input
+          id="hora_inicio"
+          type="text"
+          v-model="dia.hora_inicio"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-group
@@ -38,7 +53,11 @@
         label-for="hora_fin"
         description="FECHA HORA de FINAL de turno."
       >
-        <b-form-input id="hora_fin" type="text" v-model="dia.hora_fin"></b-form-input>
+        <b-form-input
+          id="hora_fin"
+          type="text"
+          v-model="dia.hora_fin"
+        ></b-form-input>
       </b-form-group>
       <div>
         <b-button-group>
@@ -51,7 +70,9 @@
         </b-button-group>
       </div>
       <b-form-group>
-        <b-button type="button" variant="success" @click="calcular()">CALCULAR</b-button>
+        <b-button type="button" variant="success" @click="calcular()"
+          >CALCULAR</b-button
+        >
       </b-form-group>
 
       <b-form-group
@@ -60,7 +81,11 @@
         label-for="horas_trabajadas"
         description="Horas trabajadas en el correspondiente turno."
       >
-        <b-form-input id="horas_trabajadas" type="text" v-model="dia.horas_trabajadas"></b-form-input>
+        <b-form-input
+          id="horas_trabajadas"
+          type="text"
+          v-model="dia.horas_trabajadas"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-checkbox
@@ -69,7 +94,8 @@
         value="true"
         unchecked-value="terminado"
         v-model="dia.terminado"
-      >Terminado</b-form-checkbox>
+        >Terminado</b-form-checkbox
+      >
 
       <b-form-textarea
         id="observacion"
@@ -80,8 +106,12 @@
       ></b-form-textarea>
 
       <b-button type="submit" variant="primary">Aceptar</b-button>
-      <b-button type="button" variant="warning" @click="onCancelar()">Cancelar</b-button>
-      <b-button type="button" variant="danger" @click="eliminar()">ELIMINAR</b-button>
+      <b-button type="button" variant="warning" @click="onCancelar()"
+        >Cancelar</b-button
+      >
+      <b-button type="button" variant="danger" @click="eliminar()"
+        >ELIMINAR</b-button
+      >
     </b-form>
   </div>
 </template>
@@ -164,6 +194,9 @@ export default {
       }
     },
     cargaAutomatica(turno) {
+      const fecha = moment(this.dia.fecha, 'YYYY-MM-DD')
+        .add(1, 'days')
+        .format('YYYY-MM-DD');
       switch (turno) {
         case 1:
           this.dia.hora_inicio = this.dia.fecha + ' 05:00';
@@ -182,9 +215,6 @@ export default {
           this.dia.hora_fin = this.dia.fecha + ' 18:00';
           break;
         case 5:
-          const fecha = moment(this.dia.fecha, 'YYYY-MM-DD')
-            .add(1, 'days')
-            .format('YYYY-MM-DD');
           this.dia.hora_inicio = this.dia.fecha + ' 20:30';
           this.dia.hora_fin = fecha + ' 02:30';
           break;

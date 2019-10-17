@@ -2,11 +2,9 @@
   <div>
     <div>
       <div class="alert alert-warning" role="alert">LISTADO DE HORAS</div>
-      <div
-        v-if="operario !== null"
-        class="alert alert-dark"
-        role="alert"
-      >OPERARIO {{ operario.nombre }} - {{ operario.dni}}</div>
+      <div v-if="operario !== null" class="alert alert-dark" role="alert">
+        OPERARIO {{ operario.nombre }} - {{ operario.dni }}
+      </div>
     </div>
     <b-form v-on:submit.prevent="onSubmit">
       <b-form-group
@@ -31,7 +29,8 @@
         value="true"
         unchecked-value="false"
         v-model="localOperario.activo"
-      >Esta activo</b-form-checkbox>
+        >Esta activo</b-form-checkbox
+      >
 
       <b-form-group
         id="dni"
@@ -54,7 +53,8 @@
         value="true"
         unchecked-value="false"
         v-model="localOperario.legal"
-      >Aviso legal</b-form-checkbox>
+        >Aviso legal</b-form-checkbox
+      >
 
       <b-form-group
         id="pass"
@@ -62,7 +62,11 @@
         label-for="pass"
         description="Contraseña del operario en MAYUSCULAS."
       >
-        <b-form-input id="pass" placeholder="Password" v-model="localOperario.pass"></b-form-input>
+        <b-form-input
+          id="pass"
+          placeholder="Password"
+          v-model="localOperario.pass"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-group
@@ -77,7 +81,9 @@
           @change="verSeccion"
           v-model="localOperario.seccion_id"
         >
-          <option v-for="item in secciones" :key="item._id" :value="item._id">{{item.seccion}}</option>
+          <option v-for="item in secciones" :key="item._id" :value="item._id">{{
+            item.seccion
+          }}</option>
         </b-form-select>
       </b-form-group>
       <b-form-group
@@ -86,8 +92,17 @@
         label-for="cotizacion"
         description="Grupo de cotización del operario."
       >
-        <b-form-select id="cotizacion" required v-model="localOperario.cotizacion_id">
-          <option v-for="item in cotizaciones" :key="item._id" :value="item._id">{{item.cotizacion}}</option>
+        <b-form-select
+          id="cotizacion"
+          required
+          v-model="localOperario.cotizacion_id"
+        >
+          <option
+            v-for="item in cotizaciones"
+            :key="item._id"
+            :value="item._id"
+            >{{ item.cotizacion }}</option
+          >
         </b-form-select>
       </b-form-group>
 
@@ -97,7 +112,11 @@
         label-for="hora_inicio"
         description="Hora aproximada de inicio de turno."
       >
-        <b-form-input id="hora_inicio" type="time" v-model="localOperario.hora_inicio"></b-form-input>
+        <b-form-input
+          id="hora_inicio"
+          type="time"
+          v-model="localOperario.hora_inicio"
+        ></b-form-input>
       </b-form-group>
       <b-form-group
         id="hora_fin"
@@ -105,7 +124,11 @@
         label-for="hora_fin"
         description="Hora aproximada de final de turno."
       >
-        <b-form-input id="hora_fin" type="time" v-model="localOperario.hora_fin"></b-form-input>
+        <b-form-input
+          id="hora_fin"
+          type="time"
+          v-model="localOperario.hora_fin"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-group
@@ -114,7 +137,11 @@
         label-for="max"
         description="Cantidad máxima en MINUTOS del turno."
       >
-        <b-form-input id="max" type="number" v-model="localOperario.max"></b-form-input>
+        <b-form-input
+          id="max"
+          type="number"
+          v-model="localOperario.max"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-textarea
@@ -126,8 +153,12 @@
       ></b-form-textarea>
 
       <b-button type="submit" variant="primary">Aceptar</b-button>
-      <b-button type="button" variant="success" @click="onCancelar()">Cancelar</b-button>
-      <b-button type="button" variant="danger" @click="eliminarOperario()">ELIMINAR</b-button>
+      <b-button type="button" variant="success" @click="onCancelar()"
+        >Cancelar</b-button
+      >
+      <b-button type="button" variant="danger" @click="eliminarOperario()"
+        >ELIMINAR</b-button
+      >
     </b-form>
   </div>
 </template>

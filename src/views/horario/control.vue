@@ -15,10 +15,9 @@
             v-model="fecha_1"
             @change="filtrar()"
           />
-          <small
-            id="fecha_1_help"
-            class="form-text text-muted"
-          >Fecha INICIAL para listar las horas de operarios.</small>
+          <small id="fecha_1_help" class="form-text text-muted"
+            >Fecha INICIAL para listar las horas de operarios.</small
+          >
         </div>
         <div class="col">
           <label for="fecha_2">Fecha fin</label>
@@ -30,10 +29,9 @@
             v-model="fecha_2"
             @change="filtrar()"
           />
-          <small
-            id="fecha_2_help"
-            class="form-text text-muted"
-          >Fecha FINAL para listar las horas de operarios.</small>
+          <small id="fecha_2_help" class="form-text text-muted"
+            >Fecha FINAL para listar las horas de operarios.</small
+          >
         </div>
       </div>
     </div>
@@ -42,13 +40,18 @@
         <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
         <template v-slot:cell(horas)="row">
           {{ enHoras(row.item.horas_trabajadas) }}
-          <span
-            class="error_exceso"
-            v-if="exceso(row.item.horas_trabajadas)"
-          >ERROR</span>
+          <span class="error_exceso" v-if="exceso(row.item.horas_trabajadas)"
+            >ERROR</span
+          >
         </template>
         <template v-slot:cell(accion)="row">
-          <button type="button" class="btn btn-success btn-sm" @click="editar(row.item)">EDITAR</button>
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            @click="editar(row.item)"
+          >
+            EDITAR
+          </button>
         </template>
       </b-table>
     </div>
@@ -119,7 +122,7 @@ export default {
   }
 };
 </script>
- <style scoped>
+<style scoped>
 .error_exceso {
   color: red;
   font-weight: bold;

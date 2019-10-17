@@ -2,7 +2,9 @@
   <div>
     <div>
       <div class="alert alert-warning" role="alert">LISTADO DE HORAS</div>
-      <div class="alert alert-dark" role="alert">OPERARIO {{ operario.nombre }} - {{ operario.dni}}</div>
+      <div class="alert alert-dark" role="alert">
+        OPERARIO {{ operario.nombre }} - {{ operario.dni }}
+      </div>
     </div>
     <div>
       <div class="row">
@@ -16,7 +18,9 @@
               v-model="fecha_1"
               @change="filtra()"
             />
-            <small id="fecha_1" class="form-text text-muted">Fecha INICIAL para listar las horas.</small>
+            <small id="fecha_1" class="form-text text-muted"
+              >Fecha INICIAL para listar las horas.</small
+            >
           </div>
         </div>
         <div class="col">
@@ -29,14 +33,23 @@
               v-model="fecha_2"
               @change="filtra()"
             />
-            <small id="fecha_2" class="form-text text-muted">Fecha FINAL para listar las horas.</small>
+            <small id="fecha_2" class="form-text text-muted"
+              >Fecha FINAL para listar las horas.</small
+            >
           </div>
         </div>
         <div class="col noprint">
           <div class="form-group">
-            <input type="checkbox" class="form-check-input" id="acciones" v-model="ocultar" />
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="acciones"
+              v-model="ocultar"
+            />
             <label class="form-check-label" for="acciones">Desactivar</label>
-            <small id="acciones" class="form-text text-muted">Activar / Desactivar botones acciones.</small>
+            <small id="acciones" class="form-text text-muted"
+              >Activar / Desactivar botones acciones.</small
+            >
           </div>
         </div>
         <div class="col noprint">
@@ -48,10 +61,24 @@
     </div>
     <b-table :items="horas" :fields="fields" foot-clone striped hover>
       <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
-      <template v-slot:cell(horas)="row">{{ enHoras(row.item.horas_trabajadas) }}</template>
+      <template v-slot:cell(horas)="row">{{
+        enHoras(row.item.horas_trabajadas)
+      }}</template>
       <template v-slot:cell(accion)="row" v-if="!ocultar">
-        <button type="button" class="btn btn-success btn-sm" @click="editar(row.item)">EDITAR</button>
-        <button type="button" class="btn btn-danger btn-sm" @click="borrar(row.item)">BORRAR</button>
+        <button
+          type="button"
+          class="btn btn-success btn-sm"
+          @click="editar(row.item)"
+        >
+          EDITAR
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          @click="borrar(row.item)"
+        >
+          BORRAR
+        </button>
       </template>
       <template v-slot:foot(horas)="row">
         <span class="text-danger">{{ enHoras(total) }}</span>
@@ -144,7 +171,7 @@ export default {
   }
 };
 </script>
-<style  scoped>
+<style scoped>
 /* You can add global styles to this file, and also import other style files */
 @media print {
   .noprint {

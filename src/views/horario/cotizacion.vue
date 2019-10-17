@@ -1,12 +1,16 @@
 <template>
   <div>
     <div>
-      <div class="alert alert-warning" role="alert">CREAR / EDITAR COTIZACION</div>
+      <div class="alert alert-warning" role="alert">
+        CREAR / EDITAR COTIZACION
+      </div>
       <div
         v-if="localCotizacion !== null"
         class="alert alert-dark"
         role="alert"
-      >COTIZACION {{ localCotizacion.cotizacion }}</div>
+      >
+        COTIZACION {{ localCotizacion.cotizacion }}
+      </div>
     </div>
     <b-form v-on:submit.prevent="onSubmit">
       <b-form-group
@@ -33,8 +37,12 @@
       ></b-form-textarea>
 
       <b-button type="submit" variant="primary">Aceptar</b-button>
-      <b-button type="button" variant="success" @click="onCancelar()">Cancelar</b-button>
-      <b-button type="button" variant="danger" @click="eliminarCotizacion()">ELIMINAR</b-button>
+      <b-button type="button" variant="success" @click="onCancelar()"
+        >Cancelar</b-button
+      >
+      <b-button type="button" variant="danger" @click="eliminarCotizacion()"
+        >ELIMINAR</b-button
+      >
     </b-form>
   </div>
 </template>

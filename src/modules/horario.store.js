@@ -22,7 +22,6 @@ export default {
     },
     setHorarios(state, payload) {
       state.horarios = payload;
-      console.log(state.horarios);
     },
     resetHorario(state) {
       state.horarios = [];
@@ -59,7 +58,7 @@ export default {
     }
   },
   actions: {
-    async setCreacion({ state, commit }, payload) {
+    async setCreacion({ commit }, payload) {
       commit('resetHorario');
 
       let n = 0;
@@ -224,7 +223,7 @@ export default {
       const fecha_2 = payload.fecha_2;
       const id = payload.id;
       try {
-        const { data } = await Vue.axios({
+        await Vue.axios({
           method: 'delete',
           url: `/horarios/creacion/${fecha_1}/${fecha_2}/${id}`
         });
@@ -459,7 +458,7 @@ export default {
           method: 'delete',
           url: `/horarios/control/${id}`
         });
-      } catch (error) {
+      } catch (e) {
         console.log('todosError', e.message);
         console.log(e.response.data);
         console.log(e.response.status);

@@ -10,9 +10,27 @@
       <b-table :items="operarios" :fields="fields" striped hover>
         <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
         <template v-slot:cell(accion)="row">
-          <button type="button" class="btn btn-primary btn-sm" @click="crear(row.item)">CREAR</button>
-          <button type="button" class="btn btn-success btn-sm" @click="editar(row.item)">EDITAR</button>
-          <button type="button" class="btn btn-warning btn-sm" @click="ver(row.item)">VER</button>
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            @click="crear(row.item)"
+          >
+            CREAR
+          </button>
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            @click="editar(row.item)"
+          >
+            EDITAR
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning btn-sm"
+            @click="ver(row.item)"
+          >
+            VER
+          </button>
         </template>
       </b-table>
     </div>

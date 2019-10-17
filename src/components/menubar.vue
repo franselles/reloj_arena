@@ -7,28 +7,32 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item :to="{name: 'operarios'}">Operarios</b-nav-item>
+          <b-nav-item :to="{ name: 'operarios' }">Operarios</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav>
-          <b-nav-item :to="{name: 'control'}">Control dia</b-nav-item>
+          <b-nav-item :to="{ name: 'control' }">Control dia</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav>
           <b-nav-item-dropdown text="Otros">
             <b-dropdown-item>
-              <b-link :to="{name: 'secciones'}">Secciones</b-link>
+              <b-link :to="{ name: 'secciones' }">Secciones</b-link>
             </b-dropdown-item>
             <b-dropdown-item>
-              <b-link :to="{name: 'cotizaciones'}">Cotizaciones</b-link>
+              <b-link :to="{ name: 'cotizaciones' }">Cotizaciones</b-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
         <!-- Right aligned nav items -->
 
         <b-navbar-nav class="ml-auto">
-          <b-button size="sm" class="my-2 my-sm-0 btn-warning" @click="back">Back</b-button>
-          <b-button size="sm" class="my-2 my-sm-0" @click="salir">Logout</b-button>
+          <b-button size="sm" class="my-2 my-sm-0 btn-warning" @click="back"
+            >Back</b-button
+          >
+          <b-button size="sm" class="my-2 my-sm-0" @click="salir"
+            >Logout</b-button
+          >
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

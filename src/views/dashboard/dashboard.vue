@@ -18,7 +18,7 @@ export default {
   }
 };
 </script>
-  <style scoped>
+<style scoped>
 .principal {
   margin-top: 60px;
 }

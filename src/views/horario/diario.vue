@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="alert alert-warning" role="alert">CREACION DE HORARIOS</div>
-    <div class="alert alert-dark" role="alert">OPERARIO {{ operario.nombre }} - {{ operario.dni}}</div>
+    <div class="alert alert-dark" role="alert">
+      OPERARIO {{ operario.nombre }} - {{ operario.dni }}
+    </div>
     <b-form @reset="onReset" v-on:submit.prevent="onSubmit">
       <b-form-group
         id="input-group-1"
@@ -23,7 +25,12 @@
         label-for="fecha_2"
         description="Fecha FINAL para la creación de horas."
       >
-        <b-form-input id="fecha_2" v-model="horario.fecha_2" type="date" required></b-form-input>
+        <b-form-input
+          id="fecha_2"
+          v-model="horario.fecha_2"
+          type="date"
+          required
+        ></b-form-input>
       </b-form-group>
       <b-form-group
         id="input-group-3"
@@ -31,7 +38,12 @@
         label-for="hora_inicio"
         description="FECHA HORA de INICIO de turno."
       >
-        <b-form-input id="hora_inicio" v-model="horario.hora_inicio" type="text" required></b-form-input>
+        <b-form-input
+          id="hora_inicio"
+          v-model="horario.hora_inicio"
+          type="text"
+          required
+        ></b-form-input>
       </b-form-group>
       <b-form-group
         id="input-group-4"
@@ -39,7 +51,12 @@
         label-for="hora_fin"
         description="FECHA HORA de FINAL de turno."
       >
-        <b-form-input id="hora_fin" v-model="horario.hora_fin" type="text" required></b-form-input>
+        <b-form-input
+          id="hora_fin"
+          v-model="horario.hora_fin"
+          type="text"
+          required
+        ></b-form-input>
       </b-form-group>
 
       <div>
@@ -58,7 +75,11 @@
         label-for="dias"
         description="Dias de trabajo antes del descanso."
       >
-        <b-form-input id="dias" v-model="horario.dias_trabajo" type="number"></b-form-input>
+        <b-form-input
+          id="dias"
+          v-model="horario.dias_trabajo"
+          type="number"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-group
@@ -67,12 +88,20 @@
         label-for="turno"
         description="Turno de trabajo."
       >
-        <b-form-input id="turno" v-model="horario.turno" type="number"></b-form-input>
+        <b-form-input
+          id="turno"
+          v-model="horario.turno"
+          type="number"
+        ></b-form-input>
       </b-form-group>
 
       <b-from-group>
-        <b-alert v-model="show_c" variant="success" dismissible>Horarios creados</b-alert>
-        <b-alert v-model="show" variant="danger" dismissible>Horarios eliminados</b-alert>
+        <b-alert v-model="show_c" variant="success" dismissible
+          >Horarios creados</b-alert
+        >
+        <b-alert v-model="show" variant="danger" dismissible
+          >Horarios eliminados</b-alert
+        >
       </b-from-group>
 
       <b-button type="submit" variant="primary">Aceptar</b-button>
@@ -83,7 +112,7 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapMutations, mapGetters } from 'vuex';
+import { mapActions, mapState, mapGetters } from 'vuex';
 import moment from 'moment';
 export default {
   name: 'diario',
@@ -128,6 +157,10 @@ export default {
       this.horario.cotizacion_id = this.operario.cotizacion_id;
     },
     cargaAutomatica(turno) {
+      const fecha = moment(this.horario.fecha_1, 'YYYY-MM-DD')
+        .add(1, 'days')
+        .format('YYYY-MM-DD');
+
       switch (turno) {
         case 1:
           this.horario.hora_inicio = this.horario.fecha_1 + ' 05:00';
@@ -146,9 +179,6 @@ export default {
           this.horario.hora_fin = this.horario.fecha_1 + ' 18:00';
           break;
         case 5:
-          const fecha = moment(this.horario.fecha_1, 'YYYY-MM-DD')
-            .add(1, 'days')
-            .format('YYYY-MM-DD');
           this.horario.hora_inicio = this.horario.fecha_1 + ' 20:30';
           this.horario.hora_fin = fecha + ' 02:30';
           break;
