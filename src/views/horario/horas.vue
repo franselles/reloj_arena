@@ -80,7 +80,7 @@
           BORRAR
         </button>
       </template>
-      <template v-slot:foot(horas)="row">
+      <template v-slot:foot(horas)="">
         <span class="text-danger">{{ enHoras(total) }}</span>
       </template>
     </b-table>
