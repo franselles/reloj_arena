@@ -61,6 +61,15 @@
     </div>
     <b-table :items="horas" :fields="fields" foot-clone striped hover>
       <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
+      <template v-slot:cell(dia)="row" v-if="!ocultar">{{
+        row.item.hora_inicio | onlyDay
+      }}</template>
+      <template v-slot:cell(hora_i)="row">{{
+        row.item.hora_inicio | formatDate
+      }}</template>
+      <template v-slot:cell(hora_f)="row">{{
+        row.item.hora_fin | formatDate
+      }}</template>
       <template v-slot:cell(horas)="row">{{
         enHoras(row.item.horas_trabajadas)
       }}</template>
@@ -89,6 +98,8 @@
 
 <script>
 import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
+import moment from 'moment';
+
 export default {
   name: 'horas',
   data() {
@@ -98,8 +109,9 @@ export default {
       fecha_2: null,
       fields: [
         { key: 'index', label: '#' },
-        { key: 'hora_inicio', label: 'Inicio' },
-        { key: 'hora_fin', label: 'Fin' },
+        { key: 'dia', label: '' },
+        { key: 'hora_i', label: 'Inicio' },
+        { key: 'hora_f', label: 'Fin' },
         { key: 'turno', label: 'Turno' },
         { key: 'horas', label: 'Horas' },
         { key: 'accion', label: '' }
@@ -167,6 +179,16 @@ export default {
     nuevo() {
       this.resetHorarioDia();
       this.$router.push({ name: 'detalle' });
+    }
+  },
+  filters: {
+    formatDate(value) {
+      if (value) {
+        return moment(String(value)).format('DD-MM-YYYY hh:mm');
+      }
+    },
+    onlyDay(value) {
+      return moment(String(value)).format('DD');
     }
   }
 };

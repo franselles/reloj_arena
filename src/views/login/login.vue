@@ -23,7 +23,7 @@
                 >
                   Acceder
                 </button>
-                <a href="#" class="float-right">0.1.21</a>
+                <a href="#" class="float-right">0.1.22</a>
               </form>
             </div>
           </div>
