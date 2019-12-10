@@ -60,8 +60,7 @@
       </div>
     </div>
     <b-table :items="horas" :fields="fields" foot-clone striped hover>
-      <template v-slot:cell(index)="row">{{ row['index'] + 1 }}</template>
-      <template v-slot:cell(dia)="row" v-if="!ocultar">{{
+      <template v-slot:cell(index)="row" v-if="!ocultar">{{
         row.item.hora_inicio | onlyDay
       }}</template>
       <template v-slot:cell(hora_i)="row">{{
@@ -108,8 +107,7 @@ export default {
       fecha_1: null,
       fecha_2: null,
       fields: [
-        { key: 'index', label: '#' },
-        { key: 'dia', label: '' },
+        { key: 'index', label: '' },
         { key: 'hora_i', label: 'Inicio' },
         { key: 'hora_f', label: 'Fin' },
         { key: 'turno', label: 'Turno' },
