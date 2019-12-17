@@ -1,6 +1,6 @@
 {
   "name": "horagrut-pow-25101",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,8 +13,8 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.5.0",
+    "dayjs": "^1.8.17",
     "express": "^4.16.4",
-    "moment": "^2.24.0",
     "mongoose": "^5.8.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",

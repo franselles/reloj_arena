@@ -97,7 +97,7 @@
 
 <script>
 import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export default {
   name: 'horas',
@@ -182,11 +182,11 @@ export default {
   filters: {
     formatDate(value) {
       if (value) {
-        return moment(String(value)).format('DD-MM-YYYY hh:mm');
+        return dayjs(String(value)).format('DD-MM-YYYY hh:mm');
       }
     },
     onlyDay(value) {
-      return moment(String(value)).format('DD');
+      return dayjs(String(value)).format('DD');
     }
   }
 };

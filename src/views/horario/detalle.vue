@@ -118,7 +118,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export default {
   name: 'detalle',
@@ -182,8 +182,8 @@ export default {
       });
     },
     calcular() {
-      const date1 = moment(this.dia.hora_inicio, 'YYYY-MM-DD HH:mm');
-      const date2 = moment(this.dia.hora_fin, 'YYYY-MM-DD HH:mm');
+      const date1 = dayjs(this.dia.hora_inicio, 'YYYY-MM-DD HH:mm');
+      const date2 = dayjs(this.dia.hora_fin, 'YYYY-MM-DD HH:mm');
       const diffInMinutes = date2.diff(date1, 'minutes');
       this.dia.horas_trabajadas = diffInMinutes;
     },
@@ -194,7 +194,7 @@ export default {
       }
     },
     cargaAutomatica(turno) {
-      const fecha = moment(this.dia.fecha, 'YYYY-MM-DD')
+      const fecha = dayjs(this.dia.fecha, 'YYYY-MM-DD')
         .add(1, 'days')
         .format('YYYY-MM-DD');
       switch (turno) {

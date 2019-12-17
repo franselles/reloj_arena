@@ -113,7 +113,8 @@
 
 <script>
 import { mapActions, mapState, mapGetters } from 'vuex';
-import moment from 'moment';
+import dayjs from 'dayjs';
+
 export default {
   name: 'diario',
   data() {
@@ -157,7 +158,7 @@ export default {
       this.horario.cotizacion_id = this.operario.cotizacion_id;
     },
     cargaAutomatica(turno) {
-      const fecha = moment(this.horario.fecha_1, 'YYYY-MM-DD')
+      const fecha = dayjs(this.horario.fecha_1, 'YYYY-MM-DD')
         .add(1, 'days')
         .format('YYYY-MM-DD');
 

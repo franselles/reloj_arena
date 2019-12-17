@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export default {
   namespaced: true,
@@ -70,7 +70,7 @@ export default {
       let f1, f2;
       const dias_trabajo = parseInt(payload.dias_trabajo) + 1;
 
-      totalDias = moment(payload.fecha_2).diff(moment(payload.fecha_1), 'days');
+      totalDias = dayjs(payload.fecha_2).diff(dayjs(payload.fecha_1), 'days');
 
       fecha = payload.fecha_1;
       hora_inicio = payload.hora_inicio;
@@ -97,15 +97,15 @@ export default {
         tempo.terminado = true;
         tempo.observacion = '';
 
-        f1 = moment(hora_inicio, 'YYYY-MM-DD HH:mm').add(1, 'days');
-        f2 = moment(hora_fin, 'YYYY-MM-DD HH:mm').add(1, 'days');
+        f1 = dayjs(hora_inicio, 'YYYY-MM-DD HH:mm').add(1, 'days');
+        f2 = dayjs(hora_fin, 'YYYY-MM-DD HH:mm').add(1, 'days');
         let diffInMinutes = f2.diff(f1, 'minutes');
         tempo.horas_trabajadas = diffInMinutes;
 
         if (cuentaDias === dias_trabajo) {
           cuentaDias = 0;
 
-          fecha = moment(tempo.fecha, 'YYYY-MM-DD')
+          fecha = dayjs(tempo.fecha, 'YYYY-MM-DD')
             .add(1, 'days')
             .format('YYYY-MM-DD');
           hora_inicio = f1.format('YYYY-MM-DD HH:mm');
@@ -117,7 +117,7 @@ export default {
 
         // cuentaDias++;
 
-        fecha = moment(tempo.fecha, 'YYYY-MM-DD')
+        fecha = dayjs(tempo.fecha, 'YYYY-MM-DD')
           .add(1, 'days')
           .format('YYYY-MM-DD');
         hora_inicio = f1.format('YYYY-MM-DD HH:mm');
