@@ -62,6 +62,11 @@ api.get(
   horarioControl.getHorarioSumaFechaOperario
 );
 
+api.get(
+  '/horarios/resumen/operario/fecha/:fecha_1/:fecha_2/:operario_id',
+  horarioControl.getResumenFechaOperario
+);
+
 api.get('/', function(request, response) {
   response.send('Eplayas!!!');
 });

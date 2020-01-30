@@ -160,6 +160,12 @@ export default {
     async getHorariosFecha({ commit }, payload) {
       const fecha_1 = payload.fecha_1;
       const fecha_2 = payload.fecha_2;
+
+      if (fecha_1 == '' || fecha_2 == '') {
+        commit('setHorarios', []);
+        return false;
+      }
+
       try {
         const { data } = await Vue.axios({
           method: 'get',
@@ -179,6 +185,11 @@ export default {
       const fecha_1 = payload.fecha_1;
       const fecha_2 = payload.fecha_2;
       const id = payload.id;
+
+      if (fecha_1 == '' || fecha_2 == '') {
+        return [];
+      }
+
       try {
         const { data } = await Vue.axios({
           method: 'get',
@@ -198,6 +209,11 @@ export default {
       const fecha_1 = payload.fecha_1;
       const fecha_2 = payload.fecha_2;
       const id = payload.id;
+
+      if (fecha_1 == '' || fecha_2 == '') {
+        return 0;
+      }
+
       try {
         const { data } = await Vue.axios({
           method: 'get',
@@ -222,6 +238,11 @@ export default {
       const fecha_1 = payload.fecha_1;
       const fecha_2 = payload.fecha_2;
       const id = payload.id;
+
+      if (fecha_1 == '' || fecha_2 == '') {
+        return false;
+      }
+
       try {
         await Vue.axios({
           method: 'delete',

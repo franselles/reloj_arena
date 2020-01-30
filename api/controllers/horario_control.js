@@ -231,6 +231,43 @@ function getHorarioSumaFechaOperario(req, res) {
   });
 }
 
+function getResumenFechaOperario(req, res) {
+  Horario_control.aggregate([
+    {
+      $match: {
+        fecha: { $gte: req.params.fecha_1, $lte: req.params.fecha_2 },
+        operario_id: req.params.operario_id
+      }
+    },
+    {
+      $project: {
+        _id: 1,
+        year: { $year: '$fecha' },
+        month: { $month: '$fecha' },
+        amount: 1
+      }
+    },
+    {
+      $group: {
+        _id: { op_id: '$operario_id', year: '$year', month: '$month' },
+        sum: { $sum: '$amount' },
+        horas_trabajadas: { $sum: '$horas_trabajadas' }
+      }
+    }
+  ]).exec((err, docs) => {
+    if (err)
+      return res.status(500).send({
+        message: `Error al realizar la petición: ${err}`
+      });
+    if (!docs)
+      return res.status(404).send({
+        message: 'No existe'
+      });
+
+    res.status(200).send(docs);
+  });
+}
+
 module.exports = {
   getHorarioControl,
   postHorarioControl,
@@ -242,5 +279,6 @@ module.exports = {
   getHorarioCuentaTurnos,
   postHorarioCreacion,
   deleteHorarioCreacion,
-  getHorarioSumaFechaOperario
+  getHorarioSumaFechaOperario,
+  getResumenFechaOperario
 };

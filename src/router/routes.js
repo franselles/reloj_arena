@@ -74,6 +74,12 @@ export default [
         name: 'cotizacion',
         component: () => import('@/views/horario/cotizacion.vue'),
         meta: { requiresAuth: true }
+      },
+      {
+        path: 'resumen',
+        name: 'resumen',
+        component: () => import('@/views/horario/resumen.vue'),
+        meta: { requiresAuth: true }
       }
     ]
   }

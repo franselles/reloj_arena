@@ -31,6 +31,13 @@
           >
             VER
           </button>
+          <button
+            type="button"
+            class="btn btn-warning btn-sm"
+            @click="resumen(row.item)"
+          >
+            RESUMEN
+          </button>
         </template>
       </b-table>
     </div>
@@ -70,6 +77,10 @@ export default {
     nuevo() {
       this.nuevoOperario();
       this.$router.push({ name: 'operario' });
+    },
+    resumen(data) {
+      this.setOperario(data);
+      this.$router.push({ name: 'resumen' });
     }
   },
   computed: {
