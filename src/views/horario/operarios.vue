@@ -33,7 +33,7 @@
           </button>
           <button
             type="button"
-            class="btn btn-warning btn-sm"
+            class="btn btn-info btn-sm"
             @click="resumen(row.item)"
           >
             RESUMEN

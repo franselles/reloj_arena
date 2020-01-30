@@ -5,6 +5,13 @@
     </div>
     <div>
       <div class="row">
+        <div>
+          <label>Pulsar para</label>
+          <br />
+          <button @click="filtrar()" type="button" class="btn btn-info btn-sm">
+            ACTUALIZAR
+          </button>
+        </div>
         <div class="col">
           <label for="fecha_1">Fecha desde</label>
           <input
@@ -13,7 +20,6 @@
             id="fecha_1"
             aria-describedby="fecha_1_help"
             v-model="fecha_1"
-            @change="filtrar()"
           />
           <small id="fecha_1_help" class="form-text text-muted"
             >Fecha INICIAL para listar las horas de operarios.</small
@@ -27,7 +33,6 @@
             id="fecha_2"
             aria-describedby="fecha_2_help"
             v-model="fecha_2"
-            @change="filtrar()"
           />
           <small id="fecha_2_help" class="form-text text-muted"
             >Fecha FINAL para listar las horas de operarios.</small
