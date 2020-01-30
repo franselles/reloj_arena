@@ -391,6 +391,11 @@ export default {
     async getHorariosTotalFecha({}, payload) {
       const fecha_1 = payload.fecha_1;
       const fecha_2 = payload.fecha_2;
+
+      if (fecha_1 == '' || fecha_2 == '') {
+        return [];
+      }
+
       try {
         const { data } = await Vue.axios({
           method: 'get',
