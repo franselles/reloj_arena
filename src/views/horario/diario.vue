@@ -95,14 +95,14 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-from-group>
+      <b-form-group>
         <b-alert v-model="show_c" variant="success" dismissible
           >Horarios creados</b-alert
         >
         <b-alert v-model="show" variant="danger" dismissible
           >Horarios eliminados</b-alert
         >
-      </b-from-group>
+      </b-form-group>
 
       <b-button type="submit" variant="primary">Aceptar</b-button>
       <b-button type="reset" variant="success">Reset</b-button>
