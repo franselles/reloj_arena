@@ -80,8 +80,8 @@ export default {
         { key: 'hora_inicio', label: 'Hora inicio' },
         { key: 'hora_fin', label: 'Hora fin' },
         { key: 'horas', label: 'Horas trabajadas' },
-        { key: 'accion', label: 'Acciones' }
-      ]
+        { key: 'accion', label: 'Acciones' },
+      ],
     };
   },
   mounted() {
@@ -93,7 +93,7 @@ export default {
     ...mapActions('horarioStore', [
       'getHorariosTotalFecha',
       'getHorarioDetalle',
-      'getOperario'
+      'getOperario',
     ]),
     editar(data) {
       this.getOperario(data.operario_id._id).then(() => {
@@ -105,8 +105,8 @@ export default {
     filtrar() {
       this.getHorariosTotalFecha({
         fecha_1: this.fecha_1,
-        fecha_2: this.fecha_2
-      }).then(data => {
+        fecha_2: this.fecha_2,
+      }).then((data) => {
         this.horas = data;
       });
     },
@@ -121,11 +121,11 @@ export default {
       } else {
         return false;
       }
-    }
+    },
   },
   computed: {
-    ...mapGetters('horarioStore', ['lasFechas'])
-  }
+    ...mapGetters('horarioStore', ['lasFechas']),
+  },
 };
 </script>
 <style scoped>

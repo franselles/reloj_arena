@@ -52,8 +52,8 @@ export default {
       fields: [
         { key: 'index', label: '#' },
         { key: 'nombre', label: 'Nombre' },
-        { key: 'accion', label: 'Accion' }
-      ]
+        { key: 'accion', label: 'Accion' },
+      ],
     };
   },
   mounted() {
@@ -81,10 +81,10 @@ export default {
     resumen(data) {
       this.setOperario(data);
       this.$router.push({ name: 'resumen' });
-    }
+    },
   },
   computed: {
-    ...mapState('horarioStore', ['operarios'])
-  }
+    ...mapState('horarioStore', ['operarios']),
+  },
 };
 </script>

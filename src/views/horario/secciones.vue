@@ -32,15 +32,15 @@ export default {
       fields: [
         { key: 'index', label: '#' },
         { key: 'seccion', label: 'Nombre' },
-        { key: 'accion', label: 'Accion' }
-      ]
+        { key: 'accion', label: 'Accion' },
+      ],
     };
   },
   mounted() {
     this.getSecciones();
   },
   computed: {
-    ...mapState('horarioStore', ['secciones'])
+    ...mapState('horarioStore', ['secciones']),
   },
   methods: {
     ...mapMutations('horarioStore', ['setSeccion', 'resetSeccion']),
@@ -52,7 +52,7 @@ export default {
     nuevo() {
       this.resetSeccion();
       this.$router.push({ name: 'seccion' });
-    }
-  }
+    },
+  },
 };
 </script>

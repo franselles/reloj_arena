@@ -55,8 +55,8 @@ export default {
     return {
       localCotizacion: {
         cotizacion: null,
-        observacion: null
-      }
+        observacion: null,
+      },
     };
   },
   mounted() {
@@ -65,13 +65,13 @@ export default {
     }
   },
   computed: {
-    ...mapState('horarioStore', ['cotizacion'])
+    ...mapState('horarioStore', ['cotizacion']),
   },
   methods: {
     ...mapActions('horarioStore', [
       'deleteCotizacion',
       'postCotizacion',
-      'updateCotizacion'
+      'updateCotizacion',
     ]),
     eliminarCotizacion() {
       this.deleteCotizacion(this.localCotizacion).then(() => {
@@ -91,7 +91,7 @@ export default {
           this.$router.push({ name: 'cotizaciones' });
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>

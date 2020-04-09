@@ -48,11 +48,11 @@ export default {
     return {};
   },
   methods: {
-    filtrar() {}
+    filtrar() {},
   },
   computed: {
-    ...mapState('horarioStore', ['operario'])
-  }
+    ...mapState('horarioStore', ['operario']),
+  },
 };
 </script>
 

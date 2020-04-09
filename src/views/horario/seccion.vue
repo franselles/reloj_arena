@@ -94,8 +94,8 @@ export default {
         hora_inicio: null,
         hora_fin: null,
         max: null,
-        observacion: null
-      }
+        observacion: null,
+      },
     };
   },
   mounted() {
@@ -104,13 +104,13 @@ export default {
     }
   },
   computed: {
-    ...mapState('horarioStore', ['seccion'])
+    ...mapState('horarioStore', ['seccion']),
   },
   methods: {
     ...mapActions('horarioStore', [
       'deleteSeccion',
       'postSeccion',
-      'updateSeccion'
+      'updateSeccion',
     ]),
     eliminarSeccion() {
       this.deleteSeccion(this.localSeccion).then(() => {
@@ -130,7 +130,7 @@ export default {
           this.$router.push({ name: 'secciones' });
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>

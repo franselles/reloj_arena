@@ -182,8 +182,8 @@ export default {
         hora_inicio: null,
         hora_fin: null,
         max: null,
-        observacion: null
-      }
+        observacion: null,
+      },
     };
   },
   mounted() {
@@ -197,7 +197,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('horarioStore', ['operario', 'secciones', 'cotizaciones'])
+    ...mapState('horarioStore', ['operario', 'secciones', 'cotizaciones']),
   },
   methods: {
     ...mapActions('horarioStore', [
@@ -206,7 +206,7 @@ export default {
       'getSeccion',
       'postOperario',
       'updateOperario',
-      'deleteOperario'
+      'deleteOperario',
     ]),
     ...mapMutations('horarioStore', ['nuevoOperario']),
     onSubmit() {
@@ -221,7 +221,7 @@ export default {
       this.$router.go(-1);
     },
     verSeccion(value) {
-      this.getSeccion(value).then(response => {
+      this.getSeccion(value).then((response) => {
         this.localOperario.hora_inicio = response.hora_inicio;
         this.localOperario.hora_fin = response.hora_fin;
       });
@@ -231,7 +231,7 @@ export default {
         this.deleteOperario(this.localOperario._id);
         this.$router.push({ name: 'operarios' });
       }
-    }
-  }
+    },
+  },
 };
 </script>

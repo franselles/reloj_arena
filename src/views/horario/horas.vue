@@ -112,10 +112,10 @@ export default {
         { key: 'hora_f', label: 'Fin' },
         { key: 'turno', label: 'Turno' },
         { key: 'horas', label: 'Horas' },
-        { key: 'accion', label: '' }
+        { key: 'accion', label: '' },
       ],
       horas: [],
-      total: null
+      total: null,
     };
   },
   mounted() {
@@ -125,7 +125,7 @@ export default {
   },
   computed: {
     ...mapState('horarioStore', ['operario']),
-    ...mapGetters('horarioStore', ['lasFechas'])
+    ...mapGetters('horarioStore', ['lasFechas']),
   },
   methods: {
     ...mapActions('horarioStore', [
@@ -133,23 +133,23 @@ export default {
       'getHorariosTotalFechaOperario',
       'getOperario',
       'getHorarioDetalle',
-      'deleteHora'
+      'deleteHora',
     ]),
     ...mapMutations('horarioStore', ['resetHorarioDia']),
     filtra() {
       this.getHorariosFechaOperario({
         fecha_1: this.fecha_1,
         fecha_2: this.fecha_2,
-        id: this.operario._id
-      }).then(data => {
+        id: this.operario._id,
+      }).then((data) => {
         this.horas = data;
       });
 
       this.getHorariosTotalFechaOperario({
         fecha_1: this.fecha_1,
         fecha_2: this.fecha_2,
-        id: this.operario._id
-      }).then(data => {
+        id: this.operario._id,
+      }).then((data) => {
         this.total = data;
       });
     },
@@ -177,7 +177,7 @@ export default {
     nuevo() {
       this.resetHorarioDia();
       this.$router.push({ name: 'detalle' });
-    }
+    },
   },
   filters: {
     formatDate(value) {
@@ -187,8 +187,8 @@ export default {
     },
     onlyDay(value) {
       return dayjs(String(value)).format('DD');
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

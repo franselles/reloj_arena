@@ -130,11 +130,11 @@ export default {
         turno: 1,
         dias_trabajo: 365,
         horas_trabajadas: null,
-        horas_max: null
+        horas_max: null,
       },
       show: false,
       show_c: false,
-      idOperario: null
+      idOperario: null,
     };
   },
   mounted() {
@@ -143,14 +143,14 @@ export default {
   },
   computed: {
     ...mapState('horarioStore', ['operarios', 'operario']),
-    ...mapGetters('horarioStore', ['lasFechas'])
+    ...mapGetters('horarioStore', ['lasFechas']),
   },
   methods: {
     ...mapActions('horarioStore', [
       'getHorariosFecha',
       'setCreacion',
       'deleteHorariosFechaOperario',
-      'postCreacion'
+      'postCreacion',
     ]),
     editar() {
       this.horario.operario_id = this.operario._id;
@@ -207,8 +207,8 @@ export default {
       this.deleteHorariosFechaOperario({
         fecha_1: this.horario.fecha_1,
         fecha_2: this.horario.fecha_2,
-        id: this.operario._id
-      }).then(data => {
+        id: this.operario._id,
+      }).then((data) => {
         if (data) {
           this.show = true;
         }
@@ -220,7 +220,7 @@ export default {
         this.horario.fecha_1 + ' ' + this.operario.hora_inicio;
       this.horario.hora_fin =
         this.horario.fecha_1 + ' ' + this.operario.hora_fin;
-    }
-  }
+    },
+  },
 };
 </script>

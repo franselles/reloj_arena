@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     logged: false,
-    usuarios: [{ nombre: 'Admin', pin: '0000' }]
+    usuarios: [{ nombre: 'Admin', pin: '0000' }],
   },
   mutations: {
     setLogin(state) {
@@ -10,8 +10,8 @@ export default {
     },
     setLogout(state) {
       state.logged = false;
-    }
+    },
   },
   actions: {},
-  getters: {}
+  getters: {},
 };

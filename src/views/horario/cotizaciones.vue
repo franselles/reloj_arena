@@ -34,15 +34,15 @@ export default {
       fields: [
         { key: 'index', label: '#' },
         { key: 'cotizacion', label: 'Nombre' },
-        { key: 'accion', label: 'Accion' }
-      ]
+        { key: 'accion', label: 'Accion' },
+      ],
     };
   },
   mounted() {
     this.getCotizaciones();
   },
   computed: {
-    ...mapState('horarioStore', ['cotizaciones'])
+    ...mapState('horarioStore', ['cotizaciones']),
   },
   methods: {
     ...mapMutations('horarioStore', ['setCotizacion', 'resetCotizacion']),
@@ -54,7 +54,7 @@ export default {
     nuevo() {
       this.resetCotizacion();
       this.$router.push({ name: 'cotizacion' });
-    }
-  }
+    },
+  },
 };
 </script>

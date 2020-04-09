@@ -140,8 +140,8 @@ export default {
         horas_trabajadas: null,
         horas_max: null,
         terminado: null,
-        observacion: null
-      }
+        observacion: null,
+      },
     };
   },
   mounted() {
@@ -158,7 +158,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('horarioStore', ['operario', 'horarioDia'])
+    ...mapState('horarioStore', ['operario', 'horarioDia']),
   },
   methods: {
     ...mapActions('horarioStore', ['updateHora', 'deleteHora', 'postHora']),
@@ -223,7 +223,7 @@ export default {
           this.dia.hora_fin = this.dia.fecha + ' 12:00';
           break;
       }
-    }
-  }
+    },
+  },
 };
 </script>

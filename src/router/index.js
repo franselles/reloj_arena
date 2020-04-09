@@ -6,11 +6,11 @@ import store from '@/store';
 Vue.use(Router);
 
 const router = new Router({
-  routes
+  routes,
 });
 
 router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   // const urlLevel = to.matched.some(record => record.meta.level)
   // const level = store.state.login.login.level
   const logged = store.state.loginStore.logged;

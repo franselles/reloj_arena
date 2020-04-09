@@ -11,7 +11,7 @@ export default {
     horarios: [],
     horarioDia: null,
     seccion: null,
-    cotizacion: null
+    cotizacion: null,
   },
   mutations: {
     setOperarios(state, payload) {
@@ -55,7 +55,7 @@ export default {
     },
     resetCotizacion(state) {
       state.cotizacion = null;
-    }
+    },
   },
   actions: {
     async setCreacion({ commit }, payload) {
@@ -128,7 +128,7 @@ export default {
       try {
         const { data } = await Vue.axios({
           method: 'get',
-          url: 'horarios/operarios'
+          url: 'horarios/operarios',
         });
         commit('setOperarios', data);
       } catch (e) {
@@ -145,7 +145,7 @@ export default {
         const id = payload;
         const { data } = await Vue.axios({
           method: 'get',
-          url: `horarios/operario/${id}`
+          url: `horarios/operario/${id}`,
         });
         commit('setOperario', data);
       } catch (e) {
@@ -169,7 +169,7 @@ export default {
       try {
         const { data } = await Vue.axios({
           method: 'get',
-          url: `horarios/control/todos/fecha/${fecha_1}/${fecha_2}`
+          url: `horarios/control/todos/fecha/${fecha_1}/${fecha_2}`,
         });
         commit('setHorarios', data);
       } catch (e) {
@@ -181,7 +181,7 @@ export default {
         console.log('La petición para obtener los horarios ha finalizado');
       }
     },
-    async getHorariosFechaOperario({}, payload) {
+    async getHorariosFechaOperario(context, payload) {
       const fecha_1 = payload.fecha_1;
       const fecha_2 = payload.fecha_2;
       const id = payload.id;
@@ -193,7 +193,7 @@ export default {
       try {
         const { data } = await Vue.axios({
           method: 'get',
-          url: `/horarios/control/operario/fecha/${fecha_1}/${fecha_2}/${id}`
+          url: `/horarios/control/operario/fecha/${fecha_1}/${fecha_2}/${id}`,
         });
         return data;
       } catch (e) {
@@ -205,7 +205,7 @@ export default {
         console.log('La petición para obtener los horarios ha finalizado');
       }
     },
-    async getHorariosTotalFechaOperario({}, payload) {
+    async getHorariosTotalFechaOperario(context, payload) {
       const fecha_1 = payload.fecha_1;
       const fecha_2 = payload.fecha_2;
       const id = payload.id;
@@ -217,7 +217,7 @@ export default {
       try {
         const { data } = await Vue.axios({
           method: 'get',
-          url: `/horarios/suma/operario/fecha/${fecha_1}/${fecha_2}/${id}`
+          url: `/horarios/suma/operario/fecha/${fecha_1}/${fecha_2}/${id}`,
         });
 
         if (data[0]) {
@@ -234,7 +234,7 @@ export default {
         console.log('La petición para obtener los horarios ha finalizado');
       }
     },
-    async deleteHorariosFechaOperario({}, payload) {
+    async deleteHorariosFechaOperario(context, payload) {
       const fecha_1 = payload.fecha_1;
       const fecha_2 = payload.fecha_2;
       const id = payload.id;
@@ -246,7 +246,7 @@ export default {
       try {
         await Vue.axios({
           method: 'delete',
-          url: `/horarios/creacion/${fecha_1}/${fecha_2}/${id}`
+          url: `/horarios/creacion/${fecha_1}/${fecha_2}/${id}`,
         });
         return true;
       } catch (e) {
@@ -264,7 +264,7 @@ export default {
         await Vue.axios({
           method: 'post',
           url: '/horarios/creacion',
-          data: payload
+          data: payload,
         });
       } catch (e) {
         console.log(e.message);
@@ -279,7 +279,7 @@ export default {
       try {
         const { data } = await Vue.axios({
           method: 'get',
-          url: '/horarios/secciones'
+          url: '/horarios/secciones',
         });
         commit('setSecciones', data);
       } catch (e) {
@@ -291,13 +291,13 @@ export default {
         console.log('La petición para obtener las secciones ha finalizado');
       }
     },
-    async getSeccion({}, payload) {
+    async getSeccion(context, payload) {
       const id = payload;
 
       try {
         const { data } = await Vue.axios({
           method: 'get',
-          url: `/horarios/seccion/${id}`
+          url: `/horarios/seccion/${id}`,
         });
         return data;
       } catch (e) {
@@ -313,7 +313,7 @@ export default {
       try {
         const { data } = await Vue.axios({
           method: 'get',
-          url: '/horarios/cotizaciones'
+          url: '/horarios/cotizaciones',
         });
         commit('setCotizaciones', data);
       } catch (e) {
@@ -330,7 +330,7 @@ export default {
         await Vue.axios({
           method: 'post',
           url: '/horarios/operario',
-          data: payload
+          data: payload,
         });
         dispatch('getOperarios');
       } catch (e) {
@@ -358,8 +358,8 @@ export default {
             hora_inicio: payload.hora_inicio,
             hora_fin: payload.hora_fin,
             max: payload.max,
-            observacion: payload.observacion
-          }
+            observacion: payload.observacion,
+          },
         });
         dispatch('getOperarios');
       } catch (e) {
@@ -376,7 +376,7 @@ export default {
       try {
         await Vue.axios({
           method: 'delete',
-          url: `/horarios/operario/${id}`
+          url: `/horarios/operario/${id}`,
         });
         dispatch('getOperarios');
       } catch (e) {
@@ -388,7 +388,7 @@ export default {
         console.log('La petición para borrar el operario ha finalizado');
       }
     },
-    async getHorariosTotalFecha({}, payload) {
+    async getHorariosTotalFecha(context, payload) {
       const fecha_1 = payload.fecha_1;
       const fecha_2 = payload.fecha_2;
 
@@ -399,7 +399,7 @@ export default {
       try {
         const { data } = await Vue.axios({
           method: 'get',
-          url: `/horarios/control/todos/fecha/${fecha_1}/${fecha_2}`
+          url: `/horarios/control/todos/fecha/${fecha_1}/${fecha_2}`,
         });
         return data;
       } catch (e) {
@@ -416,7 +416,7 @@ export default {
       try {
         const { data } = await Vue.axios({
           method: 'get',
-          url: `/horarios/control/${id}`
+          url: `/horarios/control/${id}`,
         });
         commit('setHorarioDia', data);
       } catch (e) {
@@ -428,12 +428,12 @@ export default {
         console.log('La petición para obtener el horario ha finalizado');
       }
     },
-    async postHora({}, payload) {
+    async postHora(context, payload) {
       try {
         await Vue.axios({
           method: 'post',
           url: '/horarios/control',
-          data: payload
+          data: payload,
         });
       } catch (e) {
         console.log('todosError', e.message);
@@ -444,7 +444,7 @@ export default {
         console.log('La petición para ingresar el horario ha finalizado');
       }
     },
-    async updateHora({}, payload) {
+    async updateHora(context, payload) {
       try {
         await Vue.axios({
           method: 'put',
@@ -464,8 +464,8 @@ export default {
             horas_trabajadas: payload.horas_trabajadas,
             horas_max: payload.horas_max,
             terminado: payload.terminado,
-            observacion: payload.observacion
-          }
+            observacion: payload.observacion,
+          },
         });
       } catch (e) {
         console.log('todosError', e.message);
@@ -476,13 +476,13 @@ export default {
         console.log('La petición para actualizar el horario ha finalizado');
       }
     },
-    async deleteHora({}, payload) {
+    async deleteHora(context, payload) {
       const id = payload._id;
 
       try {
         await Vue.axios({
           method: 'delete',
-          url: `/horarios/control/${id}`
+          url: `/horarios/control/${id}`,
         });
       } catch (e) {
         console.log('todosError', e.message);
@@ -493,12 +493,12 @@ export default {
         console.log('La petición para eliminar el horario ha finalizado');
       }
     },
-    async deleteSeccion({}, payload) {
+    async deleteSeccion(context, payload) {
       const id = payload._id;
       try {
         await Vue.axios({
           method: 'delete',
-          url: `/horarios/seccion/${id}`
+          url: `/horarios/seccion/${id}`,
         });
       } catch (e) {
         console.log('todosError', e.message);
@@ -509,7 +509,7 @@ export default {
         console.log('La petición para borrar el seccion ha finalizado');
       }
     },
-    async updateSeccion({}, payload) {
+    async updateSeccion(context, payload) {
       try {
         await Vue.axios({
           method: 'put',
@@ -519,8 +519,8 @@ export default {
             hora_inicio: payload.hora_inicio,
             hora_fin: payload.hora_fin,
             max: payload.max,
-            observacion: payload.observacion
-          }
+            observacion: payload.observacion,
+          },
         });
       } catch (e) {
         console.log('todosError', e.message);
@@ -531,12 +531,12 @@ export default {
         console.log('La petición para actualizar el seccion ha finalizado');
       }
     },
-    async postSeccion({}, payload) {
+    async postSeccion(context, payload) {
       try {
         await Vue.axios({
           method: 'post',
           url: '/horarios/seccion',
-          data: payload
+          data: payload,
         });
       } catch (e) {
         console.log(e.message);
@@ -547,12 +547,12 @@ export default {
         console.log('La petición para crear seccion ha finalizado');
       }
     },
-    async deleteCotizacion({}, payload) {
+    async deleteCotizacion(context, payload) {
       const id = payload._id;
       try {
         await Vue.axios({
           method: 'delete',
-          url: `/horarios/cotizacion/${id}`
+          url: `/horarios/cotizacion/${id}`,
         });
       } catch (e) {
         console.log('todosError', e.message);
@@ -563,15 +563,15 @@ export default {
         console.log('La petición para borrar el cotizacion ha finalizado');
       }
     },
-    async updateCotizacion({}, payload) {
+    async updateCotizacion(context, payload) {
       try {
         await Vue.axios({
           method: 'put',
           url: `/horarios/cotizacion/${payload._id}`,
           data: {
             cotizacion: payload.cotizacion,
-            observacion: payload.observacion
-          }
+            observacion: payload.observacion,
+          },
         });
       } catch (e) {
         console.log('todosError', e.message);
@@ -582,12 +582,12 @@ export default {
         console.log('La petición para actualizar el cotizacion ha finalizado');
       }
     },
-    async postCotizacion({}, payload) {
+    async postCotizacion(context, payload) {
       try {
         await Vue.axios({
           method: 'post',
           url: '/horarios/cotizacion',
-          data: payload
+          data: payload,
         });
       } catch (e) {
         console.log(e.message);
@@ -597,7 +597,7 @@ export default {
       } finally {
         console.log('La petición para crear cotizacion ha finalizado');
       }
-    }
+    },
   },
   getters: {
     lasFechas: () => {
@@ -613,8 +613,8 @@ export default {
       return {
         fechaDia,
         fechaUno,
-        fechaUnoAno
+        fechaUnoAno,
       };
-    }
-  }
+    },
+  },
 };

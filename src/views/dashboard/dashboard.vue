@@ -14,8 +14,8 @@ import menubar from '@/components/menubar.vue';
 export default {
   name: 'dashboard',
   components: {
-    menubar
-  }
+    menubar,
+  },
 };
 </script>
 <style scoped>
